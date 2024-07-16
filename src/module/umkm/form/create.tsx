@@ -27,7 +27,7 @@ export default function CreateUmkmForm() {
             nomor_hp: "",
             rentang_harga: "",
             kelengkapan_surat: "",
-            kategori: "",
+            produk: "",
             foto: "",
         },
     });
@@ -151,6 +151,44 @@ export default function CreateUmkmForm() {
                     />
                     <FormField
                         control={form.control}
+                        name="produk"
+                        render={({ field, fieldState }) => (
+                            <FormItem>
+                                <FormLabel>Produk UMKM</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder="Contoh: Makanan, Perabotan, dll"
+                                        className={cn(
+                                            fieldState.error && "border-red-400"
+                                        )}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="volume"
+                        render={({ field, fieldState }) => (
+                            <FormItem>
+                                <FormLabel>Volume Produk</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder="Contoh: 120ml atau 1kg, 5kg (jika > 1)"
+                                        className={cn(
+                                            fieldState.error && "border-red-400"
+                                        )}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
                         name="rentang_harga"
                         render={({ field, fieldState }) => (
                             <FormItem>
@@ -178,25 +216,6 @@ export default function CreateUmkmForm() {
                                     <Input
                                         {...field}
                                         placeholder="Contoh: SIUP, NPWP, TDP"
-                                        className={cn(
-                                            fieldState.error && "border-red-400"
-                                        )}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="kategori"
-                        render={({ field, fieldState }) => (
-                            <FormItem>
-                                <FormLabel>Kategori</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        placeholder="Contoh: Makanan, Perabotan, dll"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
@@ -272,6 +291,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
+                                        placeholder="Link 1, Link 2 (jika > 1)"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}

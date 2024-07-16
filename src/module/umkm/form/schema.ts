@@ -12,7 +12,7 @@ export const createUmkmSchema = z.object({
         .min(1, "Rentang Harga tidak boleh kosong")
         .max(255),
     kelengkapan_surat: z.string(),
-    kategori: z.string().min(1, "Kategori tidak boleh kosong"),
+    produk: z.string().min(1, "Produk tidak boleh kosong"),
     foto: z.any(),
 });
 
