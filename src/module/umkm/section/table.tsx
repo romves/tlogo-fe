@@ -29,11 +29,13 @@ export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
                                 <TableCell>{i + 1}</TableCell>
                                 <TableCell>{item.nama}</TableCell>
                                 <TableCell>{item.alamat}</TableCell>
+                                <TableCell>{item.koordinat_umkm}</TableCell>
                                 <TableCell>{item.nama_pemilik}</TableCell>
                                 <TableCell>{item.nomor_hp}</TableCell>
                                 <TableCell>{item.rentang_harga}</TableCell>
                                 <TableCell>{item.kelengkapan_surat}</TableCell>
-                                <TableCell>{item.kategori}</TableCell>
+                                <TableCell>{item.produk}</TableCell>
+                                <TableCell>{item.volume}</TableCell>
                             </TableRow>
                         </Fragment>
                     ))}

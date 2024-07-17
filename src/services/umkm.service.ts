@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
-import { UMKMAdmin } from "@/module/umkm/types";
+import { UMKM, UMKMAdmin } from "@/module/umkm/types";
 import axios from "axios";
 
 async function getAllUmkm(): Promise<UMKMAdmin[]> {

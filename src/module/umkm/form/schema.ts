@@ -3,8 +3,8 @@ import { z } from "zod";
 export const createUmkmSchema = z.object({
     nama: z.string().min(1, "Nama Umkm tidak boleh kosong").max(255),
     // deskripsi: z.string(),
-    koordinat_umkm: z.string().min(1, "Koordinat UMKM tidak boleh kosong"),
     alamat: z.string().min(1, "Alamat tidak boleh kosong"),
+    koordinat_umkm: z.string().min(1, "Koordinat UMKM tidak boleh kosong"),
     nama_pemilik: z.string().min(1, "Nama Pemilik tidak boleh kosong").max(255),
     nomor_hp: z.string().min(1, "Nomor HP Pemilik tidak boleh kosong").max(255),
     rentang_harga: z
@@ -13,7 +13,8 @@ export const createUmkmSchema = z.object({
         .max(255),
     kelengkapan_surat: z.string(),
     produk: z.string().min(1, "Produk tidak boleh kosong"),
-    foto: z.any(),
+    volume: z.string(),
+    foto: z.string(),
 });
 
 export type CreateUmkm = z.infer<typeof createUmkmSchema>;

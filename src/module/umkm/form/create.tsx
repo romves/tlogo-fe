@@ -53,6 +53,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
+                                        placeholder="Warung Murah Asli Pekalongan"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
@@ -84,6 +85,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
+                                        placeholder="Jalan Tlogo No. 123"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
@@ -121,6 +123,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
+                                        placeholder="John Doe"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
