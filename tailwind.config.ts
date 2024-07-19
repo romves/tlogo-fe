@@ -18,6 +18,13 @@ const config = {
       },
     },
     extend: {
+      container: {
+        center: true,
+        padding: "2rem",
+        screens: {
+          "2xl": "1400px",
+        },
+      },
       colors: {
         "green-prim": "#9FBB95",
         "green-btn": "#7FA471",

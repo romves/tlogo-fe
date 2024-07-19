@@ -57,7 +57,7 @@ const Maps = () => {
                 center={position}
                 zoom={15}
                 scrollWheelZoom={false}
-                className="w-[80vw]"
+                className=""
                 style={{ height: "80vh" }}
             >
                 <TileLayer
@@ -96,13 +96,12 @@ const Maps = () => {
                             //     );
                             // },
                         });
-                        console.log(feature);
                     }}
                 />
                 {umkms?.map((umkm) => {
-                    console.log(umkm);
                     return (
                         <Marker
+                            key={umkm.id}
                             icon={ICON}
                             position={
                                 umkm.koordinat_umkm as unknown as L.LatLngExpression

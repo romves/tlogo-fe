@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { createBatchUmkmCsvSchema } from "./schema";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 export default function CreateBatchUmkmForm() {
     const form = useForm({
@@ -23,12 +24,21 @@ export default function CreateBatchUmkmForm() {
     });
 
     async function onSubmit() {
-        const res = await createUmkmBatchCSV(form.getValues());
+        await createUmkmBatchCSV(form.getValues())
+            .then(() => {
+                toast.success("Berhasil menambahkan UMKM");
+                form.reset();
+            })
+            .catch((err) => {
+                toast.error(err.message);
+            });
     }
 
     return (
-        <div className="max-w-96 p-8">
-            <h2 className="font-semibold text-lg">Tambah UMKM via Google Sheets CSV</h2>
+        <div className="max-w-96 md:max-w-[50vw] p-8">
+            <h2 className="font-semibold text-lg">
+                Tambah UMKM via Google Sheets CSV
+            </h2>
 
             <Form {...form}>
                 <form
