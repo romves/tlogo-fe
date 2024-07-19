@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             </Breadcrumb>
 
             <div className="grid xl:grid-cols-2 gap-4">
-                <section className="flex flex-col gap-2 md:gap-4 max-w-[600px]">
+                <section className="flex flex-col gap-2 md:gap-4 md:max-w-[600px]">
                     <div className="relative aspect-[6/4] w-full overflow-hidden rounded-xl shadow-md">
                         <Image
                             src={umkm.foto[0].url_foto}
@@ -34,11 +34,11 @@ export default async function Page({ params }: { params: { id: string } }) {
                             fill
                         />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex gap-2">
                         {umkm.foto.length > 1 ? (
                             umkm.foto.slice(1, 4).map((foto, index) => (
                                 <div
-                                    className="relative aspect-square overflow-hidden rounded-xl w-96 shadow-md"
+                                    className="relative aspect-square overflow-hidden rounded-xl w-[31.7%] shadow-md"
                                 >
                                     <Image
                                         key={index}
@@ -51,9 +51,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                             ))
                         ) : (
                             <>
-                                <div className="bg-neutral-200  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
-                                <div className="bg-neutral-200  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
-                                <div className="bg-neutral-200  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
+                                <div className="bg-neutral-300  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
+                                <div className="bg-neutral-300  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
+                                <div className="bg-neutral-300  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
                                
                             </>
                         )}
