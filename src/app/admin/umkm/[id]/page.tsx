@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                     Ubah Data UMKM
                 </Button>
 
-                <section className="grid grid-cols-2 gap-2 md:gap-4">
+                <section className="grid md:grid-cols-2 gap-2 md:gap-4">
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit overflow-x-hidden">
                         <h2 className="font-bold text-xl">Informasi UMKM</h2>
                         <hr />
