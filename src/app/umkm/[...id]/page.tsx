@@ -13,8 +13,8 @@ export default async function Page({ params }: { params: { id: string } }) {
     const umkm = await getUmkmById(params.id);
 
     return (
-        <main className="w-[90%] mx-auto py-4">
-            <Breadcrumb className="pb-4">
+        <main className="container">
+            <Breadcrumb className="py-4">
                 <BreadcrumbList>
                     <BreadcrumbLink href="/">Home</BreadcrumbLink>
                     <BreadcrumbSeparator />
@@ -25,8 +25,8 @@ export default async function Page({ params }: { params: { id: string } }) {
             </Breadcrumb>
 
             <div className="grid xl:grid-cols-2 gap-4">
-                <section className="flex gap-2">
-                    <div className="relative w-[70%] aspect-square">
+                <section className="flex flex-col gap-2 md:gap-4 max-w-[600px]">
+                    <div className="relative aspect-[6/4] w-full overflow-hidden rounded-xl shadow-md">
                         <Image
                             src={umkm.foto[0].url_foto}
                             alt="gambar-umkm"
@@ -34,66 +34,70 @@ export default async function Page({ params }: { params: { id: string } }) {
                             fill
                         />
                     </div>
-                    <div className="flex flex-col gap-2 w-[30%]">
+                    <div className="flex gap-4">
                         {umkm.foto.length > 1 ? (
-                            umkm.foto
-                                .slice(1)
-                                .map((foto, index) => (
+                            umkm.foto.slice(1, 4).map((foto, index) => (
+                                <div
+                                    className="relative aspect-square overflow-hidden rounded-xl w-96 shadow-md"
+                                >
                                     <Image
                                         key={index}
                                         src={foto.url_foto}
                                         alt="gambar-umkm"
-                                        width={800}
-                                        height={600}
+                                        fill
                                         className="object-cover"
                                     />
-                                ))
+                                </div>
+                            ))
                         ) : (
                             <>
-                                <div className="bg-neutral-200 w-full aspect-square"></div>
-                                <div className="bg-neutral-200 w-full aspect-square"></div>
+                                <div className="bg-neutral-200  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
+                                <div className="bg-neutral-200  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
+                                <div className="bg-neutral-200  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
+                               
                             </>
                         )}
                     </div>
                 </section>
-                <section className="space-y-4 p-4 py-5 md:p-8 md:py-9 shadow-md rounded-xl h-fit">
-                    <h1 className="text-lg md:text-3xl font-semibold">
+
+                <section className="bg-white space-y-2 p-4 shadow-md rounded-xl h-fit">
+                    <h1 className="text-lg md:text-xl font-semibold">
                         Informasi Toko
                     </h1>
 
-                    <div className="grid gap-3">
+                    <div className="grid gap-2">
                         <span>
-                            <p className="text-xs md:text-lg">Nama Toko</p>
-                            <h2 className="text-sm md:text-2xl font-medium">
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Nama Toko</p>
+                            <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.nama}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs md:text-lg">Nama Pemilik</p>
-                            <h2 className="text-sm md:text-2xl font-medium">
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Nama Pemilik</p>
+                            <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.nama_pemilik}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs md:text-lg">Produk Dijual</p>
-                            <h2 className="text-sm md:text-2xl font-medium">
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Produk Dijual</p>
+                            <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.produk}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs md:text-lg">Harga Produk</p>
-                            <h2 className="text-sm md:text-2xl font-medium">
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Harga Produk</p>
+                            <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.rentang_harga}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs md:text-lg">Alamat</p>
-                            <h2 className="text-sm md:text-2xl font-medium">
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Alamat</p>
+                            <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.alamat}
                             </h2>
                         </span>
 
-                        <div className="text-xs md:text-base mt-4">
+                        <div className="text-xs md:text-sm mt-2 text-black/50 font-medium">
                             Informasi lebih lanjut hubungi penjual melalui{" "}
                             <a
                                 href={`https://wa.me/${umkm.nomor_hp}`}
@@ -102,18 +106,19 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 Whatsapp
                             </a>
                         </div>
-                    </div>
-                </section>
-                <section className="space-y-2 p-4 shadow-md rounded-xl">
-                    <h1 className="text-lg md:text-3xl font-semibold">
-                        Lokasi Toko
-                    </h1>
-                    <div className="aspect-w-16 aspect-h-9">
-                        <iframe
-                            className="w-full aspect-video"
-                            src={`https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3949.802864216327!2d${umkm.koordinat_umkm[1]}!3d${umkm.koordinat_umkm[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMDcnMTcuNiJTIDExMsKwMTInMDIuNSJF!5e0!3m2!1sen!2sid!4v1721375669775!5m2!1sen!2sid`}
-                            loading="lazy"
-                        ></iframe>
+
+                        <hr />
+
+                        <h1 className="text-base md:text-lg font-semibold">
+                            Lokasi
+                        </h1>
+                        <div className="">
+                            <iframe
+                                className="w-full aspect-[21/9]"
+                                src={`https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3949.802864216327!2d${umkm.koordinat_umkm[1]}!3d${umkm.koordinat_umkm[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMDcnMTcuNiJTIDExMsKwMTInMDIuNSJF!5e0!3m2!1sen!2sid!4v1721375669775!5m2!1sen!2sid`}
+                                loading="lazy"
+                            ></iframe>
+                        </div>
                     </div>
                 </section>
             </div>

@@ -18,9 +18,9 @@ export default async function UmkmCard({ umkm }: { umkm: UMKM }) {
                 pathname: `/umkm/${umkm.id}`,
             }}
         >
-            <Card className="h-full min-h-[60vw] md:h-[24rem]">
+            <Card className="h-[18rem] md:h-[20rem]">
                 <CardHeader>
-                    <div className="relative w-full h-28 md:h-64">
+                    <div className="relative w-full h-[10rem]">
                         <Image
                             className="object-cover"
                             loading="lazy"
@@ -34,12 +34,12 @@ export default async function UmkmCard({ umkm }: { umkm: UMKM }) {
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-1 md:space-y-3">
-                    <CardTitle className="text-base md:text-xl">
+                    <CardTitle className="text-base lg:text-xl">
                         {umkm.nama}
                     </CardTitle>
                     <div className="md:space-y-2">
                         <CardDescription>{umkm.produk}</CardDescription>
-                        <CardDescription className="line-clamp-2">
+                        <CardDescription className="line-clamp-2 text-xs">
                             {umkm.alamat}
                         </CardDescription>
                     </div>
