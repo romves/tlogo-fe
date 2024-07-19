@@ -41,8 +41,6 @@ export default function CreateUmkmForm() {
     });
 
     function onSubmit(data: CreateUmkm) {
-        console.log(data);
-
         createUmkm(data)
             .then(() => {
                 toast.success("UMKM berhasil ditambahkan");

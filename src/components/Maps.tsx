@@ -96,11 +96,9 @@ const Maps = () => {
                             //     );
                             // },
                         });
-                        console.log(feature);
                     }}
                 />
                 {umkms?.map((umkm) => {
-                    // console.log(umkm);
                     return (
                         <Marker
                             key={umkm.id}

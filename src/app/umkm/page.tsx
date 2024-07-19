@@ -5,9 +5,6 @@ import React from "react";
 
 export default async function Page() {
     const umkms = (await getAllUmkm()) as UMKM[];
-
-    console.log(umkms);
-
     return (
         <main className="w-[90%] mx-auto py-8">
             <section className="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-4">
