@@ -10,7 +10,11 @@ export interface UMKMAdmin {
     kelengkapan_surat: string;
     produk: string;
     volume: string;
-    foto: string;
+    foto: [
+        {
+            url_foto: string;
+        }
+    ];
 }
 
-export type UMKM = Omit<UMKMAdmin, 'kelengkapan_surat'>
+export type UMKM = Omit<UMKMAdmin, "kelengkapan_surat">;

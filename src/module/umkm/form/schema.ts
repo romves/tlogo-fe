@@ -4,7 +4,9 @@ export const createUmkmSchema = z.object({
     nama: z.string().min(1, "Nama Umkm tidak boleh kosong").max(255),
     // deskripsi: z.string(),
     alamat: z.string().min(1, "Alamat tidak boleh kosong"),
-    koordinat_umkm: z.string().min(1, "Koordinat UMKM tidak boleh kosong"),
+    koordinat_umkm: z
+        .string()
+        .regex(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/i, "Koordinat tidak valid"),
     nama_pemilik: z.string().min(1, "Nama Pemilik tidak boleh kosong").max(255),
     nomor_hp: z.string().min(1, "Nomor HP Pemilik tidak boleh kosong").max(255),
     rentang_harga: z
@@ -14,7 +16,7 @@ export const createUmkmSchema = z.object({
     kelengkapan_surat: z.string(),
     produk: z.string().min(1, "Produk tidak boleh kosong"),
     volume: z.string(),
-    foto: z.string(),
+    // foto: z.string(),
 });
 
 export type CreateUmkm = z.infer<typeof createUmkmSchema>;

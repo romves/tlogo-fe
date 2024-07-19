@@ -12,10 +12,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { CreateUmkm, createUmkmSchema } from "@/module/umkm/form/schema";
+import { createUmkm } from "@/services/umkm.service";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function CreateUmkmForm() {
+    const [photoFieldCount, setPhotoFieldCount] = useState(1);
     const form = useForm<CreateUmkm>({
         resolver: zodResolver(createUmkmSchema),
         defaultValues: {
@@ -28,16 +32,29 @@ export default function CreateUmkmForm() {
             rentang_harga: "",
             kelengkapan_surat: "",
             produk: "",
-            foto: "",
+            volume: "",
+            // foto: "",
+            // ...Array.from({ length: photoFieldCount }).reduce<{
+            //     [key: string]: string;
+            // }>((acc, _, index) => ({ ...acc, [`foto_${index}`]: "" }), {}),
         },
     });
 
     function onSubmit(data: CreateUmkm) {
         console.log(data);
+
+        createUmkm(data)
+            .then(() => {
+                toast.success("UMKM berhasil ditambahkan");
+                form.reset();
+            })
+            .catch((err) => {
+                toast.error(err.message);
+            });
     }
 
     return (
-        <div className="max-w-96 p-8 space-y-2">
+        <div className="max-w-96 md:max-w-[50vw] p-8 space-y-2">
             <h2 className="font-semibold text-lg">Tambah UMKM</h2>
             <Form {...form}>
                 <form
@@ -228,6 +245,32 @@ export default function CreateUmkmForm() {
                             </FormItem>
                         )}
                     />
+
+                    {/* <FormField
+                        control={form.control}
+                        name="foto"
+                        render={({ field, fieldState }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    Link Foto{" "}
+                                    <span className="!text-neutral-500 text-xs">
+                                        (Google Drive)
+                                    </span>
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder="Link 1, Link 2 (jika > 1)"
+                                        className={cn(
+                                            fieldState.error && "border-red-400"
+                                        )}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    /> */}
+
                     {/* <FormField
                         control={form.control}
                         name="kategori_id"
@@ -280,31 +323,61 @@ export default function CreateUmkmForm() {
                             </FormItem>
                         )}
                     /> */}
-                    <FormField
-                        control={form.control}
-                        name="foto"
-                        render={({ field, fieldState }) => (
-                            <FormItem>
-                                <FormLabel>
-                                    Link Foto{" "}
-                                    <span className="!text-neutral-500 text-xs">
-                                        (Google Drive)
-                                    </span>
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        placeholder="Link 1, Link 2 (jika > 1)"
-                                        className={cn(
-                                            fieldState.error && "border-red-400"
-                                        )}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
 
+                    {/* {Array.from({ length: photoFieldCount }).map((_, index) => (
+                        <FormField
+                            key={index}
+                            control={form.control}
+                            name={`foto_${index}` as "foto"}
+                            render={({ field, fieldState }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Link Foto{" "}
+                                        <span className="!text-neutral-500 text-xs">
+                                            (Google Drive)
+                                        </span>
+                                    </FormLabel>
+                                    <FormControl>
+                                        <div className="flex items-end gap-2">
+                                            <Input
+                                                {...field}
+                                                placeholder="Link 1, Link 2 (jika > 1)"
+                                                className={cn(
+                                                    fieldState.error &&
+                                                        "border-red-400"
+                                                )}
+                                            />
+                                            {index > 0 && (
+                                                <Button
+                                                    type="button"
+                                                    size="icon"
+                                                    onClick={() =>
+                                                        photoFieldCount > 1 &&
+                                                        setPhotoFieldCount(
+                                                            (prev) => prev - 1
+                                                        )
+                                                    }
+                                                >
+                                                    -
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        /> 
+                    ))} */}
+
+                    {/* <Button
+                        type="button"
+                        variant='link'
+                        className="px-0"
+                        onClick={() => setPhotoFieldCount((prev) => prev + 1)}
+                    >
+                        Tambah Foto
+                    </Button>
+                    <br  /> */}
                     <Button type="submit">Simpan</Button>
                 </form>
             </Form>
