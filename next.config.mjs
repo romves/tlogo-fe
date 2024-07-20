@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["via.placeholder.com", "drive.google.com"],
+        remotePatterns: [
+            {
+                hostname: "via.placeholder.com",
+            },
+            {
+                hostname: "drive.google.com",
+            },
+        ],
     },
 };
 

@@ -1,3 +1,4 @@
+
 import UmkmCard from "@/components/UmkmCard";
 import { UMKM } from "@/module/umkm/types";
 import { getAllUmkm } from "@/services/umkm.service";

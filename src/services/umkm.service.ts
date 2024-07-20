@@ -30,7 +30,7 @@ async function createUmkm(data: CreateUmkm) {
     //         },
     //     ],
     // };
-    
+
     // return await fetch(`${BASE_URL}/umkm`, {
     //     method: "POST",
     //     headers: {
@@ -42,18 +42,22 @@ async function createUmkm(data: CreateUmkm) {
     return await axiosInstance.post("/umkm", data);
 }
 
-async function updateUmkmById() {}
+async function updateUmkmById() {
+
+}
 
 async function deleteUmkmById(id: string) {
     return axiosInstance.delete(`/umkm/${id}`);
 }
 
-async function createUmkmBatchCSV(data: any) {
-    return await axios.post(`${BASE_URL}/umkm/batch`, data, {
+async function createUmkmBatchCSV(payload: any) {
+    const { data } = await axios.post(`${BASE_URL}/umkm/batch`, payload, {
         headers: {
             "Content-Type": "multipart/form-data",
         },
     });
+
+    return Promise.resolve(data.data);
 }
 
 export {
