@@ -24,10 +24,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={plusJakartaSans.className}>
-                <Providers>
-                    {children}
-                    <Toaster />
-                </Providers>
+                <Providers>{children}</Providers>
+                <Toaster />
             </body>
         </html>
     );

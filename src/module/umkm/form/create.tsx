@@ -52,7 +52,7 @@ export default function CreateUmkmForm() {
     }
 
     return (
-        <div className="max-w-96 md:max-w-[50vw] p-8 space-y-2">
+        <div className="max-w-96 md:max-w-[50vw] py-8 md:p-8 space-y-2">
             <h2 className="font-semibold text-lg">Tambah UMKM</h2>
             <Form {...form}>
                 <form

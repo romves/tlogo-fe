@@ -35,7 +35,7 @@ export default function CreateBatchUmkmForm() {
     }
 
     return (
-        <div className="max-w-96 md:max-w-[50vw] p-8">
+        <div className="max-w-96 md:max-w-[50vw] py-8 md:p-8">
             <h2 className="font-semibold text-lg">
                 Tambah UMKM via Google Sheets CSV
             </h2>

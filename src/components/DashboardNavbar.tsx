@@ -13,7 +13,7 @@ export default function DashboardNavbar() {
     const { status } = useSession();
 
     return (
-        <nav className="flex items-center justify-between w-[90%] mx-auto py-2">
+        <nav className="flex items-center justify-between container py-2">
             <Link href="/">
                 <Image
                     src={IconTlogo}

@@ -17,7 +17,7 @@ export default async function Page() {
     const umkm = await getAllUmkm();
 
     return (
-        <main className="w-[90%] mx-auto my-8 grid gap-4">
+        <main className="container my-8 grid gap-4">
             <Link
                 className={cn(buttonVariants(), "ml-auto")}
                 href="/admin/umkm/tambah-umkm"

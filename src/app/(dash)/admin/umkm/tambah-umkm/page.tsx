@@ -12,7 +12,7 @@ import React from "react";
 
 export default function Page() {
     return (
-        <main className="w-[90%] mx-auto text-lg">
+        <main className="container text-lg">
             <Breadcrumb className="pt-8">
                 <BreadcrumbList>
                     <BreadcrumbLink href="/admin/umkm">UMKM</BreadcrumbLink>
