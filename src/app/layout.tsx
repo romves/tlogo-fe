@@ -25,7 +25,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={plusJakartaSans.className}>
                 <Providers>{children}</Providers>
-                <Toaster />
+                <Toaster position="top-center"/>
             </body>
         </html>
     );

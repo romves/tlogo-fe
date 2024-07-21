@@ -16,17 +16,17 @@ export default async function Page({ params }: { params: { id: string } }) {
         <main className="container">
             <Breadcrumb className="py-4">
                 <BreadcrumbList>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                    <BreadcrumbSeparator />
+                    {/* <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    <BreadcrumbSeparator /> */}
                     <BreadcrumbLink href="/umkm">Lapak Umkm</BreadcrumbLink>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>{umkm.nama}</BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
 
-            <div className="grid xl:grid-cols-2 gap-4">
+            <div className="grid xl:grid-cols-2 gap-3 mb-8">
                 <section className="flex flex-col lg:flex-row gap-2 md:gap-4 w-full">
-                    <div className="relative aspect-[6/4] w-full h-[60%] overflow-hidden rounded-xl shadow-md">
+                    <div className="relative aspect-[6/4] w-full overflow-hidden rounded-xl shadow-md">
                         <Image
                             src={umkm.foto[0].url_foto}
                             alt="gambar-umkm"
@@ -34,12 +34,13 @@ export default async function Page({ params }: { params: { id: string } }) {
                             fill
                         />
                     </div>
+
                     <div className="flex lg:flex-col gap-2 md:gap-4">
                         {umkm.foto.length > 1 ? (
                             umkm.foto.slice(1, 4).map((foto, index) => (
                                 <div
                                     key={index}
-                                    className="relative overflow-hidden h-full lg:h-[28%] w-full rounded-xl shadow-md"
+                                    className="relative overflow-hidden h-full lg:h-[28%] w-full rounded-xl shadow"
                                 >
                                     <Image
                                         src={foto.url_foto}
@@ -51,9 +52,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                             ))
                         ) : (
                             <>
-                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow-md"></div>
-                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow-md"></div>
-                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow-md"></div>
+                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow"></div>
                             </>
                         )}
                     </div>

@@ -35,21 +35,47 @@ export default function Login() {
     });
 
     function onSubmit() {
-        signIn("credentials", {
-            username: form.getValues("username"),
-            password: form.getValues("password"),
-        })
-            .then((res: any) => {
-                if (res.error) {
-                    toast.error("Gagal masuk");
-                    return;
-                }
-                form.reset();
-                toast.success("Berhasil masuk");
-            })
-            .catch((err) => {
-                if (err.error) {
-                    toast.error("Gagal masuk");
+        // signIn("credentials", {
+        //     username: form.getValues("username"),
+        //     password: form.getValues("password"),
+        // })
+        //     .then((res: any) => {
+        //         if (res.error) {
+        //             toast.error("Gagal masuk");
+        //             return;
+        //         }
+        //         form.reset();
+        //         toast.success("Berhasil masuk");
+        //     })
+        //     .catch((err) => {
+        //         if (err.error) {
+        //             toast.error("Gagal masuk");
+        //             form.setError("username", {
+        //                 type: "manual",
+        //                 message: "Username atau password salah",
+        //             });
+        //             form.setError("password", {
+        //                 type: "manual",
+        //                 message: "Username atau password salah",
+        //             });
+        //             return;
+        //         }
+        //     });
+
+        toast.promise(
+            signIn("credentials", {
+                username: form.getValues("username"),
+                password: form.getValues("password"),
+                redirect: false
+            }),
+            {
+                loading: "Loading...",
+                success: (data) => {
+                    form.reset();
+                    toast.success("Berhasil masuk");
+                    return "Berhasil masuk";
+                },
+                error: (err) => {
                     form.setError("username", {
                         type: "manual",
                         message: "Username atau password salah",
@@ -58,9 +84,10 @@ export default function Login() {
                         type: "manual",
                         message: "Username atau password salah",
                     });
-                    return;
-                }
-            });
+                    return "Gagal masuk";
+                },
+            }
+        );
     }
 
     return (

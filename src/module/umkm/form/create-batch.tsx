@@ -17,21 +17,39 @@ import { useForm } from "react-hook-form";
 import { createBatchUmkmCsvSchema } from "./schema";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { create } from "domain";
 
 export default function CreateBatchUmkmForm() {
+    const router = useRouter();
     const form = useForm({
         resolver: zodResolver(createBatchUmkmCsvSchema),
     });
 
     async function onSubmit() {
-        await createUmkmBatchCSV(form.getValues())
-            .then(() => {
-                toast.success("Berhasil menambahkan UMKM");
+        // await createUmkmBatchCSV(form.getValues())
+        //     .then(() => {
+        //         toast.success("Berhasil menambahkan UMKM");
+        //         form.reset();
+        //         // refresh
+
+        //         router.push("/admin/umkm");
+        //     })
+        //     .catch((err) => {
+        //         toast.error(err.message);
+        //     });
+        toast.promise(createUmkmBatchCSV(form.getValues()), {
+            loading: "Loading...",
+            success: (data) => {
                 form.reset();
-            })
-            .catch((err) => {
-                toast.error(err.message);
-            });
+                router.push("/admin/umkm");
+
+                return "Berhasil menambah UMKM";
+            },
+            error: (err) => {
+                return err.message;
+            },
+        });
     }
 
     return (
