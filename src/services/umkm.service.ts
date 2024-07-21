@@ -4,26 +4,27 @@ import { UMKM, UMKMAdmin } from "@/module/umkm/types";
 import axios from "axios";
 import { toast } from "sonner";
 
-async function getAllUmkm() {
+async function getAllUmkm(): Promise<UMKMAdmin[]> {
     try {
         const { data } = await api.get("/umkm");
         return data.data;
     } catch (error) {
         console.error("Error get all umkm:", error);
+        throw new Error("Failed to fetch UMKM data. Please try again later.");
     }
 }
 
-async function getUmkmById(id: string) {
+async function getUmkmById(id: string): Promise<UMKMAdmin> {
     try {
         const { data } = await api.get(`/umkm/${id}`);
         return data.data;
     } catch (error) {
         console.error("Error get umkm by id:", error);
-        toast.error("Gagal mengambil data UMKM");
+        throw new Error("Failed to fetch UMKM data by ID. Please try again later.");
     }
 }
 
-async function createUmkm(data: CreateUmkm) {
+async function createUmkm(data: CreateUmkm): Promise<UMKMAdmin> {
     // return await fetch(`${BASE_URL}/umkm`, {
     //     method: "POST",
     //     headers: {

@@ -4,7 +4,7 @@ import { getAllUmkm } from "@/services/umkm.service";
 import React from "react";
 
 export default async function Page() {
-    const umkms = ((await getAllUmkm()) as UMKM[]) ?? [];
+    const umkms = await getAllUmkm()
     return (
         <main className="w-[90%] mx-auto py-8">
             {umkms.length == 0 ? (
@@ -13,8 +13,11 @@ export default async function Page() {
                 </div>
             ) : (
                 umkms.map((umkm) => (
-                    <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4">
-                        <UmkmCard key={umkm.id} umkm={umkm} />
+                    <section
+                        key={umkm.id}
+                        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4"
+                    >
+                        <UmkmCard umkm={umkm} />
                     </section>
                 ))
             )}

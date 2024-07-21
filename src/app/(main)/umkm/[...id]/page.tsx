@@ -38,10 +38,10 @@ export default async function Page({ params }: { params: { id: string } }) {
                         {umkm.foto.length > 1 ? (
                             umkm.foto.slice(1, 4).map((foto, index) => (
                                 <div
+                                    key={index}
                                     className="relative aspect-square overflow-hidden rounded-xl w-[31.7%] shadow-md"
                                 >
                                     <Image
-                                        key={index}
                                         src={foto.url_foto}
                                         alt="gambar-umkm"
                                         fill
@@ -54,7 +54,6 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 <div className="bg-neutral-300  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
                                 <div className="bg-neutral-300  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
                                 <div className="bg-neutral-300  aspect-square w-[31.7%] rounded-xl shadow-md"></div>
-                               
                             </>
                         )}
                     </div>
@@ -67,31 +66,41 @@ export default async function Page({ params }: { params: { id: string } }) {
 
                     <div className="grid gap-2">
                         <span>
-                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Nama Toko</p>
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">
+                                Nama Toko
+                            </p>
                             <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.nama}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Nama Pemilik</p>
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">
+                                Nama Pemilik
+                            </p>
                             <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.nama_pemilik}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Produk Dijual</p>
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">
+                                Produk Dijual
+                            </p>
                             <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.produk}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Harga Produk</p>
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">
+                                Harga Produk
+                            </p>
                             <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.rentang_harga}
                             </h2>
                         </span>
                         <span>
-                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">Alamat</p>
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">
+                                Alamat
+                            </p>
                             <h2 className="text-sm md:text-base font-semibold">
                                 {umkm.alamat}
                             </h2>

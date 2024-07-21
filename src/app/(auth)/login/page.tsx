@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 import { LoginPayload, loginPayloadSchema } from "@/module/auth/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn, useSession } from "next-auth/react";
-import Head from "next/head";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -36,11 +35,6 @@ export default function Login() {
     });
 
     function onSubmit() {
-        console.log({
-            username: form.getValues("username"),
-            password: form.getValues("password"),
-        });
-
         signIn("credentials", {
             username: form.getValues("username"),
             password: form.getValues("password"),
@@ -165,7 +159,7 @@ export default function Login() {
                         <button
                             // disabled={form.formState.isSubmitting}
                             type="submit"
-                            className="w-full px-4 py-2 text-white bg-green-btn rounded-lg focus:outline-none"
+                            className="w-full px-4 py-2 text-white bg-green-btn rounded-lg focus:outline-none hover:bg-green-btn-hover transition-colors"
                         >
                             Masuk
                         </button>

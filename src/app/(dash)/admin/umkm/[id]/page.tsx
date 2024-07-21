@@ -1,31 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { UMKMAdmin } from "@/module/umkm/types";
 import { getUmkmById } from "@/services/umkm.service";
+import Image from "next/image";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Page({ params }: { params: { id: string } }) {
     const umkm = await getUmkmById(params.id);
 
+    if (!umkm) {
+        redirect("/admin/umkm");
+    }
+
     return (
         <main className="container py-4">
             <div className="grid xl:grid-cols-2 gap-4">
-                <Button className="w-fit ml-auto">
-                    Ubah Data UMKM
-                </Button>
+                <Button className="w-fit ml-auto">Ubah Data UMKM</Button>
 
                 <section className="grid md:grid-cols-2 gap-2 md:gap-4">
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit overflow-x-hidden">
                         <h2 className="font-bold text-xl">Informasi UMKM</h2>
                         <hr />
 
-                        <div className="flex mb-4 gap-2 overflow-x-scroll">
-                            {umkm.foto.map((foto) => {
+                        <div className="flex mb-4 gap-2 overflow-x-auto">
+                            {umkm.foto.map((foto, i) => {
                                 return (
-                                    <img
-                                        src={foto.url_foto}
-                                        alt="gambar-umkm"
-                                        className="object-cover"
-                                    />
+                                    <div key={i} className="relative h-40 aspect-square">
+                                        <Image
+                                            src={foto.url_foto}
+                                            alt="gambar-umkm"
+                                            className="object-cover"
+                                            fill
+                                        />
+                                    </div>
                                 );
                             })}
                         </div>
@@ -102,8 +109,6 @@ export default async function Page({ params }: { params: { id: string } }) {
                             </h2>
                         </span>
                     </div>
-
-                        
                 </section>
             </div>
         </main>

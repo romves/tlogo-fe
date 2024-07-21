@@ -28,6 +28,7 @@ const config = {
       colors: {
         "green-prim": "#9FBB95",
         "green-btn": "#7FA471",
+        "green-btn-hover": "#a5bf9c",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

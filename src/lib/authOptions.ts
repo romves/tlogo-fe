@@ -45,12 +45,6 @@ export const authOptions: NextAuthOptions = {
                     throw new Error("Invalid credentials");
                 }
 
-                console.log({
-                    id: res.user.id,
-                    username: decoded.username,
-                    accessToken: res.accessToken,
-                })
-
                 return {
                     id: res.user.id,
                     username: decoded.username,
