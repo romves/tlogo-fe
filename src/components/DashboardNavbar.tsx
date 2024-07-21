@@ -1,36 +1,21 @@
 "use client";
 
 import {
-    Cloud,
-    CreditCard,
-    Github,
     Keyboard,
-    LifeBuoy,
     LogOut,
-    Mail,
-    MessageSquare,
-    Plus,
-    PlusCircle,
     Settings,
-    User,
-    UserPlus,
-    Users,
+    User
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuPortal,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
-    DropdownMenuTrigger,
+    DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
 import { signOut, useSession } from "next-auth/react";
@@ -39,8 +24,8 @@ import Image from "next/image";
 import IconTlogo from "@/assets/icons/DESATLOGO.gif";
 import { getInitialName } from "@/lib/utils";
 import Link from "next/link";
-import { Avatar, AvatarFallback } from "./ui/avatar";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback } from "./ui/avatar";
 
 export default function DashboardNavbar() {
     const { data, status } = useSession();
