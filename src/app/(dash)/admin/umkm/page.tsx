@@ -1,7 +1,14 @@
 import { buttonVariants } from "@/components/ui/button";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
-import CreateUmkmForm from "@/module/umkm/form/create";
 import TableSection from "@/module/umkm/section/table";
 import { getAllUmkm } from "@/services/umkm.service";
 import Link from "next/link";
@@ -17,7 +24,6 @@ export default async function Page() {
             >
                 Tambah Data
             </Link>
-            {/* <CreateForm /> */}
 
             <div className="overflow-x-auto">
                 <TableSection umkm={umkm} />

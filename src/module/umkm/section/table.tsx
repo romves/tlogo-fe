@@ -13,6 +13,14 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
+    if (!data || data.length === 0) {
+        return (
+            <div className="bg-white rounded-lg p-4 text-center text-neutral-400">
+                No UMKM data available.
+            </div>
+        );
+    }
+
     const umkm = data.map(({ foto, ...rest }) => rest);
 
     return (
