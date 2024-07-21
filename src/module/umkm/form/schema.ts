@@ -8,7 +8,9 @@ export const createUmkmSchema = z.object({
         .string()
         .regex(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/i, "Koordinat tidak valid"),
     nama_pemilik: z.string().min(1, "Nama Pemilik tidak boleh kosong").max(255),
-    nomor_hp: z.string().min(1, "Nomor HP Pemilik tidak boleh kosong").max(255),
+    nomor_hp: z
+        .string()
+        .regex(/^(\+62|62)8[1-9][0-9]{6,9}$/i, "Nomor HP tidak valid, pastikan diawali 62"),
     rentang_harga: z
         .string()
         .min(1, "Rentang Harga tidak boleh kosong")
@@ -24,7 +26,7 @@ export type CreateUmkm = z.infer<typeof createUmkmSchema>;
 export const createBatchUmkmCsvSchema = z.object({
     csv: z
         .instanceof(File, {
-            message: "Dokuemn CSV tidak boleh kosong",
+            message: "Dokumen CSV tidak boleh kosong",
         })
         .refine((file) => file.type === "text/csv", {
             message: "File harus berformat CSV",

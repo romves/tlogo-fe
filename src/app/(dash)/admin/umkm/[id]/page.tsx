@@ -1,9 +1,14 @@
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { UMKMAdmin } from "@/module/umkm/types";
 import { getUmkmById } from "@/services/umkm.service";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
 
 export default async function Page({ params }: { params: { id: string } }) {
     const umkm = await getUmkmById(params.id);
@@ -14,6 +19,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     return (
         <main className="container py-4">
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbLink href="/admin/umkm">Dashboard</BreadcrumbLink>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>{umkm.nama}</BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
+
             <div className="grid xl:grid-cols-2 gap-4">
                 <Button className="w-fit ml-auto">Ubah Data UMKM</Button>
 
@@ -25,7 +38,10 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <div className="flex mb-4 gap-2 overflow-x-auto">
                             {umkm.foto.map((foto, i) => {
                                 return (
-                                    <div key={i} className="relative h-40 aspect-square">
+                                    <div
+                                        key={i}
+                                        className="relative h-40 aspect-square"
+                                    >
                                         <Image
                                             src={foto.url_foto}
                                             alt="gambar-umkm"

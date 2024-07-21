@@ -44,10 +44,10 @@ export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
                                 <TableHead key={i}>{key}</TableHead>
                             ))} */}
 
-                        <TableHead>No</TableHead>
+                        <TableHead className="w-1">No</TableHead>
                         <TableHead>Nama UMKM</TableHead>
                         {/* <TableHead>Pemilik UMKM</TableHead> */}
-                        <TableHead>Aksi</TableHead>
+                        <TableHead className="w-1">Aksi</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -67,11 +67,11 @@ export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
                                     <Link
                                         href={`/admin/umkm/${item.id}`}
                                         className={buttonVariants({
-                                            size: "icon",
-                                            variant: "info",
+                                            variant: "primary",
                                         })}
                                     >
-                                        <Settings />
+                                        {/* <Settings /> */}
+                                        Lihat Detail
                                     </Link>
                                     {/* <Button variant="info" size="icon"></Button> */}
                                 </TableCell>

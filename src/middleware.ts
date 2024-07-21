@@ -11,7 +11,15 @@ export const config = {
 export async function middleware(req: NextRequest) {
     const token = await getToken({ req, raw: true });
 
-    if (!token) {
+    const { pathname } = req.nextUrl;
+
+    if (token && pathname === "/login") {
+        return NextResponse.redirect(new URL("/", req.url));
+    }
+
+    if (!token && pathname.startsWith("/admin")) {
         return NextResponse.redirect(new URL("/login", req.url));
     }
+
+    return NextResponse.next();
 }

@@ -1,16 +1,49 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { getSession, signOut, useSession } from "next-auth/react";
+import {
+    Cloud,
+    CreditCard,
+    Github,
+    Keyboard,
+    LifeBuoy,
+    LogOut,
+    Mail,
+    MessageSquare,
+    Plus,
+    PlusCircle,
+    Settings,
+    User,
+    UserPlus,
+    Users,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuShortcut,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 import IconTlogo from "@/assets/icons/DESATLOGO.gif";
+import { getInitialName } from "@/lib/utils";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { Button } from "./ui/button";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { toast } from "sonner";
 
 export default function DashboardNavbar() {
-    const { status } = useSession();
+    const { data, status } = useSession();
 
     return (
         <nav className="flex items-center justify-between container py-2">
@@ -25,7 +58,60 @@ export default function DashboardNavbar() {
 
             <div className="flex gap-3 font-medium text-sm items-center">
                 {status == "authenticated" && (
-                    <Button onClick={() => signOut()}>Logout</Button>
+                    <>
+                        {" "}
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Avatar className="border-[.5px] font-semibold">
+                                    <AvatarFallback>
+                                        {getInitialName(data.user.name)}
+                                    </AvatarFallback>
+                                </Avatar>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                <DropdownMenuLabel>
+                                    Halo {data.user.name} !!
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem>
+                                        <User className="mr-2 h-4 w-4" />
+                                        <span>UMKM</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Settings className="mr-2 h-4 w-4" />
+                                        <span>Settings</span>
+                                        <DropdownMenuShortcut>
+                                            ⌘S
+                                        </DropdownMenuShortcut>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Keyboard className="mr-2 h-4 w-4" />
+                                        <span>Keyboard shortcuts</span>
+                                        <DropdownMenuShortcut>
+                                            ⌘K
+                                        </DropdownMenuShortcut>
+                                    </DropdownMenuItem>
+                                </DropdownMenuGroup>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem asChild>
+                                    <button
+                                        onClick={() =>
+                                            toast.promise(signOut, {
+                                                loading: "Logging out...",
+                                                success: "Logged out",
+                                                error: "Error logging out",
+                                            })
+                                        }
+                                        className="w-full"
+                                    >
+                                        <LogOut className="mr-2 h-4 w-4" />
+                                        <span>Log out</span>
+                                    </button>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </>
                 )}
             </div>
         </nav>

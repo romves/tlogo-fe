@@ -41,14 +41,14 @@ export default function CreateUmkmForm() {
     });
 
     function onSubmit(data: CreateUmkm) {
-        createUmkm(data)
-            .then(() => {
-                toast.success("UMKM berhasil ditambahkan");
+        toast.promise(createUmkm(data), {
+            loading: "Menambahkan UMKM...",
+            success: (data) => {
                 form.reset();
-            })
-            .catch((err) => {
-                toast.error(err.message);
-            });
+                return "Sukses menambahkan UMKM";
+            },
+            error: "Gagal menambahkan UMKM",
+        });
     }
 
     return (
@@ -100,7 +100,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="Jalan Tlogo No. 123"
+                                        placeholder="Contoh: Jalan Tlogo No. 123"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
@@ -138,7 +138,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="John Doe"
+                                        placeholder="Contoh: John Doe"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
@@ -157,7 +157,8 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="08xxxxxxxxxx"
+                                        type="number"
+                                        placeholder="628xxxxxxxxxx"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
