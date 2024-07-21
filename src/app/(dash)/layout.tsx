@@ -1,12 +1,6 @@
-import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "@/app/styles/globals.css";
-import Navbar from "@/components/Navbar";
-import { Toaster } from "@/components/ui/sonner";
 import DashboardNavbar from "@/components/DashboardNavbar";
-
-const inter = Inter({ subsets: ["latin"] });
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -18,6 +12,8 @@ export default function MainLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+
+
     return (
         <>
             <DashboardNavbar />

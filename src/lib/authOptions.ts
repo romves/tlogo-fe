@@ -74,20 +74,13 @@ export const authOptions: NextAuthOptions = {
         },
         async session({ session, token, user }): Promise<any> {
             // console.log("session callback", { session, token, user });
-            console.log(session.user);
-            return {
-                ...session,
-                user: {
-                    ...session.user,
-                    username: token.username,
-                    accessToken: token.accessToken,
-                },
-            };
+
+            session.user.accessToken = token.accessToken as string;
 
             return session;
         },
     },
-    // pages: {
-    //     signIn: "/login",
-    // },
+    pages: {
+        signIn: "/login",
+    },
 };

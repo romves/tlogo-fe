@@ -13,18 +13,19 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { LoginPayload, loginPayloadSchema } from "@/module/auth/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export default function Login() {
-    // const { data: session, status } = useSession();
+    const { data: session, status } = useSession();
 
-    // if (status == "authenticated") {
-    //     redirect("/admin/umkm");
-    // }
+    if (status == "authenticated") {
+        redirect("/admin/umkm");
+    }
 
     const form = useForm<LoginPayload>({
         resolver: zodResolver(loginPayloadSchema),
@@ -38,44 +39,38 @@ export default function Login() {
         console.log({
             username: form.getValues("username"),
             password: form.getValues("password"),
-        })
+        });
 
-        toast.success("Berhasil masuk");
-        signIn("credential", {
-            redirect: false,
+        signIn("credentials", {
             username: form.getValues("username"),
             password: form.getValues("password"),
-            callbackUrl: `${window.location.origin}/admin/umkm`,
         })
             .then((res: any) => {
                 if (res.error) {
                     toast.error("Gagal masuk");
                     return;
                 }
-
                 form.reset();
                 toast.success("Berhasil masuk");
             })
             .catch((err) => {
-                toast.error("Coba lagi");
-
-                form.setError("username", {
-                    type: "manual",
-                    message: "Coba lagi",
-                });
-                form.setError("password", {
-                    type: "manual",
-                    message: "Coba lagi",
-                });
+                if (err.error) {
+                    toast.error("Gagal masuk");
+                    form.setError("username", {
+                        type: "manual",
+                        message: "Username atau password salah",
+                    });
+                    form.setError("password", {
+                        type: "manual",
+                        message: "Username atau password salah",
+                    });
+                    return;
+                }
             });
     }
 
     return (
         <div className="flex items-center justify-center min-h-screen ">
-            <Head>
-                <title>Masuk</title>
-            </Head>
-
             <div className=" w-full max-w-md p-8">
                 <Image
                     src={loginImage}
@@ -91,7 +86,7 @@ export default function Login() {
 
                 <Form {...form}>
                     <form
-                        method="POST"
+                        // method="POST"
                         className="space-y-4"
                         onSubmit={form.handleSubmit(onSubmit)}
                     >
@@ -168,7 +163,7 @@ export default function Login() {
                             />
                         </div> */}
                         <button
-                            disabled={form.formState.isSubmitting}
+                            // disabled={form.formState.isSubmitting}
                             type="submit"
                             className="w-full px-4 py-2 text-white bg-green-btn rounded-lg focus:outline-none"
                         >
