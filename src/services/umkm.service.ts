@@ -1,15 +1,15 @@
-import { BASE_URL, axiosInstance } from "@/lib/axios";
+import { BASE_URL, api, formDataApi } from "@/lib/axios";
 import { CreateUmkm } from "@/module/umkm/form/schema";
 import { UMKM, UMKMAdmin } from "@/module/umkm/types";
 import axios from "axios";
 
 async function getAllUmkm(): Promise<UMKMAdmin[]> {
-    const { data } = await axiosInstance.get("/umkm");
+    const { data } = await api.get("/umkm");
     return Promise.resolve(data.data);
 }
 
 async function getUmkmById(id: string): Promise<UMKMAdmin> {
-    const { data } = await axiosInstance.get(`/umkm/${id}`);
+    const { data } = await api.get(`/umkm/${id}`);
     return Promise.resolve(data.data);
 }
 
@@ -30,7 +30,7 @@ async function createUmkm(data: CreateUmkm) {
     //         },
     //     ],
     // };
-    
+
     // return await fetch(`${BASE_URL}/umkm`, {
     //     method: "POST",
     //     headers: {
@@ -39,21 +39,21 @@ async function createUmkm(data: CreateUmkm) {
     //     body: JSON.stringify(x),
     // });
 
-    return await axiosInstance.post("/umkm", data);
+    return await api.post("/umkm", data);
 }
 
-async function updateUmkmById() {}
+async function updateUmkmById() {
+
+}
 
 async function deleteUmkmById(id: string) {
-    return axiosInstance.delete(`/umkm/${id}`);
+    return api.delete(`/umkm/${id}`);
 }
 
-async function createUmkmBatchCSV(data: any) {
-    return await axios.post(`${BASE_URL}/umkm/batch`, data, {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-    });
+async function createUmkmBatchCSV(payload: any) {
+    const { data } = await formDataApi.post("/umkm/batch", payload);
+
+    return Promise.resolve(data.data);
 }
 
 export {

@@ -1,7 +1,6 @@
 export interface UMKMAdmin {
     id: number;
     nama: string;
-    deskripsi: string;
     alamat: string;
     koordinat_umkm: string[];
     nama_pemilik: string;
@@ -17,4 +16,4 @@ export interface UMKMAdmin {
     ];
 }
 
-export type UMKM = Omit<UMKMAdmin, "kelengkapan_surat">;
+export type UMKM = Omit<UMKMAdmin, "deskripsi" | "koordinat_umkm" | "rentang_harga" | "kelengkapan_surat" | "volume">;
