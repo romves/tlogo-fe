@@ -23,9 +23,11 @@ async function uploadImagesLogic(fotos: any) {
 
     const uploadedImages = await Promise.all(
         fotos.map(async (foto: File) => {
+            const id = createId();
+            const filePath = `umkm_image/${id}-${foto.name}`;
             const { data: image, error } = await supabase.storage
                 .from("umkm_image")
-                .upload(`umkm_image/${foto.name}`, foto); // Use unique path for each image
+                .upload(filePath, foto); // Use unique path for each image
             if (error) {
                 throw new Error(error.message);
             }
@@ -33,7 +35,7 @@ async function uploadImagesLogic(fotos: any) {
             // Retrieve the public URL of the uploaded image
             const { data } = supabase.storage
                 .from("umkm_image")
-                .getPublicUrl(`umkm_image/${createId()}-${foto.name}`);
+                .getPublicUrl(filePath);
 
             if (!data) {
                 throw new Error(
