@@ -1,12 +1,26 @@
 import UmkmCard from "@/components/UmkmCard";
-import { UMKM } from "@/module/umkm/types";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
 import { getAllUmkm } from "@/services/umkm.service";
-import React from "react";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-export default async function Page() {
-    const umkms = await getAllUmkm();
+export default async function Page({
+    searchParams,
+}: {
+    searchParams?: {
+        perPage?: string;
+        page?: string;
+    };
+}) {
+    const umkms = await getAllUmkm(searchParams);
     return (
         <main className="container py-8">
             {umkms.length == 0 ? (
@@ -14,11 +28,30 @@ export default async function Page() {
                     No UMKM data available.
                 </div>
             ) : (
-                <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4">
-                    {umkms.map((umkm) => (
-                        <UmkmCard key={umkm.id} umkm={umkm} />
-                    ))}
-                </section>
+                <div className="space-y-4">
+                    <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4">
+                        {umkms.map((umkm) => (
+                            <UmkmCard key={umkm.id} umkm={umkm} />
+                        ))}
+                    </section>
+
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious href="#" />
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">1</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationEllipsis />
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationNext href="#" />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                </div>
             )}
         </main>
     );

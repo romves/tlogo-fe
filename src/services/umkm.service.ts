@@ -1,12 +1,23 @@
-import { BASE_URL, api, formDataApi } from "@/lib/axios";
+import { api, formDataApi } from "@/lib/axios";
 import { CreateUmkm, UpdateUMKM } from "@/module/umkm/form/schema";
-import { UMKM, UMKMAdmin } from "@/module/umkm/types";
-import axios from "axios";
-import { toast } from "sonner";
+import { UMKMAdmin } from "@/module/umkm/types";
 
-async function getAllUmkm(): Promise<UMKMAdmin[]> {
+async function getAllUmkm(query?: {
+    perPage?: string;
+    page?: string;
+}): Promise<UMKMAdmin[]> {
+    console.log(query)
+
     try {
-        const { data } = await api.get("/umkm");
+        const searchParams = new URLSearchParams();
+        if (query?.perPage) {
+            searchParams.append("perPage", query.perPage);
+        }
+        if (query?.page) {
+            searchParams.append("page", query.page);
+        }
+
+        const { data } = await api.get(`/umkm?${searchParams.toString()}`);
         return data.data;
     } catch (error) {
         console.error("Error get all umkm:", error);
@@ -39,7 +50,7 @@ async function createUmkm(data: CreateUmkm): Promise<UMKMAdmin> {
 }
 
 async function updateUmkmById(payload: UpdateUMKM, id: string) {
-    console.log(payload, id)
+    console.log(payload, id);
     try {
         const { data } = await api.put(`/umkm/${id}`, payload);
 
@@ -61,10 +72,10 @@ async function createUmkmBatchCSV(payload: any) {
 }
 
 export {
+    createUmkm,
+    createUmkmBatchCSV,
+    deleteUmkmById,
     getAllUmkm,
     getUmkmById,
-    createUmkm,
     updateUmkmById,
-    deleteUmkmById,
-    createUmkmBatchCSV,
 };

@@ -29,7 +29,7 @@ export default function AvatarDropdown() {
         return (
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Avatar className="border-[.5px] font-semibold text-foreground">
+                    <Avatar className="cursor-pointer border-[.5px] font-semibold text-foreground">
                         <AvatarFallback>
                             {getInitialName(data.user.name)}
                         </AvatarFallback>

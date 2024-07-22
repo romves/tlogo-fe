@@ -13,10 +13,17 @@ import TableSection from "@/module/umkm/section/table";
 import { getAllUmkm } from "@/services/umkm.service";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
-export default async function Page() {
-    const umkm = await getAllUmkm();
+export default async function Page({
+    searchParams,
+}: {
+    searchParams?: {
+        perPage?: string;
+        page?: string;
+    };
+}) {
+    const umkm = await getAllUmkm(searchParams);
 
     return (
         <main className="container my-8 grid gap-4">

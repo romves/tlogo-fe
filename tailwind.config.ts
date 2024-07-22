@@ -23,6 +23,7 @@ const config = {
         padding: "1rem",
         screens: {
           "2xl": "90%",
+          "7xl": "1920px"
         },
       },
       colors: {

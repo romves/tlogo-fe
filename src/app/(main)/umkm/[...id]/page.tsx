@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
             <div className="grid xl:grid-cols-2 gap-3 mb-8">
                 <section className="flex flex-col lg:flex-row gap-2 md:gap-4 w-full">
-                    <div className="relative aspect-[6/4] w-full overflow-hidden rounded-xl shadow-md">
+                    <div className="relative aspect-[6/4] w-full xl:h-[65%] overflow-hidden rounded-xl shadow-md">
                         <Image
                             src={umkm.foto[0].url_foto}
                             alt="gambar-umkm"
