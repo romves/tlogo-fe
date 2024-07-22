@@ -12,14 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { CreateUmkm, createUmkmSchema } from "@/module/umkm/form/schema";
-import {
-    updateUmkmById
-} from "@/services/umkm.service";
+import { updateUmkmById } from "@/services/umkm.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { UMKMAdmin } from "../types";
+import { uploadImagesLogic } from "@/services/file-upload.service";
 
 export default function UpdateUmkmForm({
     params,
@@ -50,19 +49,33 @@ export default function UpdateUmkmForm({
         },
     });
 
-    function onSubmit(data: CreateUmkm) {
-        toast.promise(updateUmkmById(form.getValues(), params.id), {
-            loading: "Memproses perubahan UMKM...",
-            success: (data) => {
-                form.reset();
-                router.push(`/admin/umkm/${params.id}`)
-                router.refresh()
-                return "Sukses mengubah UMKM";
-            },
-            error: (err) => {
-                return err.message;
-            },
-        });
+    async function onSubmit() {
+        try {
+            const uploadedFileUrlList = await uploadImagesLogic(
+                form.getValues("foto")
+            );
+
+            form.setValue(
+                "foto",
+                uploadedFileUrlList.map((url) => ({ url_foto: url }))
+            );
+
+            toast.promise(updateUmkmById(form.getValues(), params.id), {
+                loading: "Memproses perubahan UMKM...",
+                success: (data) => {
+                    form.reset();
+                    router.push(`/admin/umkm/${params.id}`);
+                    router.refresh();
+                    return "Sukses mengubah UMKM";
+                },
+                error: (err) => {
+                    return err.message;
+                },
+            });
+        } catch (error) {
+            console.error("Error uploading images or updating UMKM:", error);
+            toast.error("Gagal mengupdate UMKM");
+        }
     }
 
     return (
@@ -259,138 +272,34 @@ export default function UpdateUmkmForm({
                         )}
                     />
 
-                    {/* <FormField
-                        control={form.control}
-                        name="foto"
-                        render={({ field, fieldState }) => (
-                            <FormItem>
-                                <FormLabel>
-                                    Link Foto{" "}
-                                    <span className="!text-neutral-500 text-xs">
-                                        (Google Drive)
-                                    </span>
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        placeholder="Link 1, Link 2 (jika > 1)"
-                                        className={cn(
-                                            fieldState.error && "border-red-400"
-                                        )}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    /> */}
-
-                    {/* <FormField
-                        control={form.control}
-                        name="kategori_id"
-                        render={({ field, fieldState }) => (
-                            <FormItem>
-                                <FormLabel>Kategori</FormLabel>
-                                <FormControl>
-                                    <Select>
-                                        <SelectTrigger className="w-[180px]">
-                                            <SelectValue placeholder="Kategori" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="0">
-                                                Makanan
-                                            </SelectItem>
-                                            <SelectItem value="1">
-                                                Minuman
-                                            </SelectItem>
-                                            <SelectItem value="2">
-                                                Perabotan
-                                            </SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    /> */}
-                    {/* <FormField
+<FormField
                         control={form.control}
                         name="foto"
                         render={({ field: { value, onChange, ...field } }) => (
                             <FormItem>
-                                <FormLabel>Foto</FormLabel>`
+                                <FormLabel>Foto</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
                                         type="file"
                                         accept="image/*"
                                         multiple
-                                        onChange={(e) =>
+                                        onChange={(e) => {
+                                            console.log(
+                                                Array.from(e.target.files || [])
+                                            );
                                             onChange(
-                                                e.target.files &&
-                                                    e.target.files[0]
-                                            )
-                                        }
+                                                Array.from(e.target.files || [])
+                                            );
+                                        }}
                                     />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
-                    /> */}
+                    />
 
-                    {/* {Array.from({ length: photoFieldCount }).map((_, index) => (
-                        <FormField
-                            key={index}
-                            control={form.control}
-                            name={`foto_${index}` as "foto"}
-                            render={({ field, fieldState }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        Link Foto{" "}
-                                        <span className="!text-neutral-500 text-xs">
-                                            (Google Drive)
-                                        </span>
-                                    </FormLabel>
-                                    <FormControl>
-                                        <div className="flex items-end gap-2">
-                                            <Input
-                                                {...field}
-                                                placeholder="Link 1, Link 2 (jika > 1)"
-                                                className={cn(
-                                                    fieldState.error &&
-                                                        "border-red-400"
-                                                )}
-                                            />
-                                            {index > 0 && (
-                                                <Button
-                                                    type="button"
-                                                    size="icon"
-                                                    onClick={() =>
-                                                        photoFieldCount > 1 &&
-                                                        setPhotoFieldCount(
-                                                            (prev) => prev - 1
-                                                        )
-                                                    }
-                                                >
-                                                    -
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> 
-                    ))} */}
-
-                    {/* <Button
-                        type="button"
-                        variant='link'
-                        className="px-0"
-                        onClick={() => setPhotoFieldCount((prev) => prev + 1)}
-                    >
-                        Tambah Foto
-                    </Button>
-                    <br  /> */}
+                   
                     <Button type="submit">Simpan</Button>
                 </form>
             </Form>
