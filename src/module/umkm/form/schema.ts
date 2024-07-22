@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { nullable, z } from "zod";
 
 export const createUmkmSchema = z.object({
     nama: z.string().min(1, "Nama Umkm tidak boleh kosong").max(255),
@@ -21,6 +21,7 @@ export const createUmkmSchema = z.object({
     kelengkapan_surat: z.string(),
     produk: z.string().min(1, "Produk tidak boleh kosong"),
     volume: z.string(),
+    foto: z.any(),
     // foto: z.string(),
 });
 export type CreateUmkm = z.infer<typeof createUmkmSchema>;
@@ -45,6 +46,7 @@ export const updateUmkmSchema = z.object({
     kelengkapan_surat: z.string(),
     produk: z.string().min(1, "Produk tidak boleh kosong"),
     volume: z.string(),
+    foto: z.any(),
 });
 export type UpdateUMKM = z.infer<typeof updateUmkmSchema>
 

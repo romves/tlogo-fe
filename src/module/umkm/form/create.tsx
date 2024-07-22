@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { CreateUmkm, createUmkmSchema } from "@/module/umkm/form/schema";
+import { uploadImagesLogic } from "@/services/file-upload.service";
 import { createUmkm } from "@/services/umkm.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -35,24 +36,41 @@ export default function CreateUmkmForm() {
             kelengkapan_surat: "",
             produk: "",
             volume: "",
-            // foto: "",
+            foto: [],
             // ...Array.from({ length: photoFieldCount }).reduce<{
             //     [key: string]: string;
             // }>((acc, _, index) => ({ ...acc, [`foto_${index}`]: "" }), {}),
         },
     });
 
-    function onSubmit(data: CreateUmkm) {
-        toast.promise(createUmkm(data), {
-            loading: "Menambahkan UMKM...",
-            success: (data) => {
-                form.reset();
-                router.push(`/admin/umkm`);
-                router.refresh();
-                return "Sukses menambahkan UMKM";
-            },
-            error: "Gagal menambahkan UMKM",
-        });
+    async function onSubmit() {
+        console.log("submitting");
+        try {
+            const uploadedFileUrlList = await uploadImagesLogic(
+                form.getValues("foto")
+            );
+
+            form.setValue(
+                "foto",
+                uploadedFileUrlList.map((url) => ({ url_foto: url }))
+            );
+
+            console.log(uploadedFileUrlList);
+
+            toast.promise(createUmkm(form.getValues()), {
+                loading: "Menambahkan UMKM...",
+                success: () => {
+                    form.reset(); // Reset the form
+                    router.push(`/admin/umkm`); // Navigate to the UMKM admin page
+                    router.refresh(); // Refresh the router
+                    return "Sukses menambahkan UMKM";
+                },
+                error: "Gagal menambahkan UMKM",
+            });
+        } catch (error) {
+            console.error("Error uploading images or creating UMKM:", error);
+            toast.error("Gagal menambahkan UMKM");
+        }
     }
 
     return (
@@ -302,30 +320,32 @@ export default function CreateUmkmForm() {
                             </FormItem>
                         )}
                     /> */}
-                    {/* <FormField
+                    <FormField
                         control={form.control}
                         name="foto"
                         render={({ field: { value, onChange, ...field } }) => (
                             <FormItem>
-                                <FormLabel>Foto</FormLabel>`
+                                <FormLabel>Foto</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
                                         type="file"
                                         accept="image/*"
                                         multiple
-                                        onChange={(e) =>
+                                        onChange={(e) => {
+                                            console.log(
+                                                Array.from(e.target.files || [])
+                                            );
                                             onChange(
-                                                e.target.files &&
-                                                    e.target.files[0]
-                                            )
-                                        }
+                                                Array.from(e.target.files || [])
+                                            );
+                                        }}
                                     />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
-                    /> */}
+                    />
 
                     {/* {Array.from({ length: photoFieldCount }).map((_, index) => (
                         <FormField
