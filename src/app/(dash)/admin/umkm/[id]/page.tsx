@@ -5,9 +5,11 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { getUmkmById } from "@/services/umkm.service";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -21,14 +23,14 @@ export default async function Page({ params }: { params: { id: string } }) {
         <main className="container py-4">
             <Breadcrumb>
                 <BreadcrumbList>
-                    <BreadcrumbLink href="/admin/umkm">Dashboard</BreadcrumbLink>
+                    <BreadcrumbLink href="/admin/umkm">Dashboard UMKM</BreadcrumbLink>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>{umkm.nama}</BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
 
             <div className="grid xl:grid-cols-2 gap-4">
-                <Button className="w-fit ml-auto">Ubah Data UMKM</Button>
+                <Link href={`/admin/umkm/${params.id}/edit`} className={cn(buttonVariants(), 'ml-auto w-fit')} >Ubah Data UMKM</Link>
 
                 <section className="grid md:grid-cols-2 gap-2 md:gap-4">
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit overflow-x-hidden">

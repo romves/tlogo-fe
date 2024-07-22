@@ -20,7 +20,7 @@ const config = {
     extend: {
       container: {
         center: true,
-        padding: "2rem",
+        padding: "1rem",
         screens: {
           "2xl": "90%",
         },
