@@ -3,6 +3,8 @@ import { UMKM } from "@/module/umkm/types";
 import { getAllUmkm } from "@/services/umkm.service";
 import React from "react";
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page() {
     const umkms = await getAllUmkm();
     return (
