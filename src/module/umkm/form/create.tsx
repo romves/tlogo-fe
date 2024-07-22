@@ -44,7 +44,6 @@ export default function CreateUmkmForm() {
     });
 
     async function onSubmit() {
-        console.log("submitting");
         try {
             const uploadedFileUrlList = await uploadImagesLogic(
                 form.getValues("foto")
@@ -54,8 +53,6 @@ export default function CreateUmkmForm() {
                 "foto",
                 uploadedFileUrlList.map((url) => ({ url_foto: url }))
             );
-
-            console.log(uploadedFileUrlList);
 
             toast.promise(createUmkm(form.getValues()), {
                 loading: "Menambahkan UMKM...",

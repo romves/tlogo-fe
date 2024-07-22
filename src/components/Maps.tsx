@@ -10,6 +10,8 @@ import { getAllUmkm } from "@/services/umkm.service";
 import { useEffect, useState } from "react";
 import { UMKMAdmin } from "@/module/umkm/types";
 
+export const dynamic = 'force-dynamic' 
+
 const ICON = icon({
     iconUrl: "/icons/store.png",
     iconSize: [28, 28],
