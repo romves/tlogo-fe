@@ -14,11 +14,13 @@ import { cn } from "@/lib/utils";
 import { CreateUmkm, createUmkmSchema } from "@/module/umkm/form/schema";
 import { createUmkm } from "@/services/umkm.service";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export default function CreateUmkmForm() {
+    const router = useRouter();
     const [photoFieldCount, setPhotoFieldCount] = useState(1);
     const form = useForm<CreateUmkm>({
         resolver: zodResolver(createUmkmSchema),
@@ -45,6 +47,8 @@ export default function CreateUmkmForm() {
             loading: "Menambahkan UMKM...",
             success: (data) => {
                 form.reset();
+                router.push(`/admin/umkm`);
+                router.refresh();
                 return "Sukses menambahkan UMKM";
             },
             error: "Gagal menambahkan UMKM",
@@ -119,7 +123,7 @@ export default function CreateUmkmForm() {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="Contoh: -6.123456, 106.123456"
+                                        placeholder="Contoh: -6.123456,106.123456"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}

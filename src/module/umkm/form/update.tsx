@@ -13,12 +13,10 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { CreateUmkm, createUmkmSchema } from "@/module/umkm/form/schema";
 import {
-    createUmkm,
-    getUmkmById,
-    updateUmkmById,
+    updateUmkmById
 } from "@/services/umkm.service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { UMKMAdmin } from "../types";
@@ -30,6 +28,7 @@ export default function UpdateUmkmForm({
     params: { id: string };
     umkm: UMKMAdmin;
 }) {
+    const router = useRouter();
     // const [photoFieldCount, setPhotoFieldCount] = useState(1);
     const form = useForm<CreateUmkm>({
         resolver: zodResolver(createUmkmSchema),
@@ -56,6 +55,8 @@ export default function UpdateUmkmForm({
             loading: "Memproses perubahan UMKM...",
             success: (data) => {
                 form.reset();
+                router.push(`/admin/umkm/${params.id}`)
+                router.refresh()
                 return "Sukses mengubah UMKM";
             },
             error: (err) => {
@@ -132,7 +133,7 @@ export default function UpdateUmkmForm({
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="Contoh: -6.123456, 106.123456"
+                                        placeholder="Contoh: -6.123456,106.123456"
                                         className={cn(
                                             fieldState.error && "border-red-400"
                                         )}
