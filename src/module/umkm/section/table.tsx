@@ -71,7 +71,7 @@ export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
                                         })}
                                     >
                                         {/* <Settings /> */}
-                                        Lihat Detail
+                                        Detail
                                     </Link>
                                     {/* <Button variant="info" size="icon"></Button> */}
                                 </TableCell>

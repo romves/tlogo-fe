@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     }
 
     return (
-        <main className="container py-4">
+        <main className="container py-4 space-y-4">
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbLink href="/admin/umkm">Dashboard UMKM</BreadcrumbLink>

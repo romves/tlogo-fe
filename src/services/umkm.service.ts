@@ -39,8 +39,9 @@ async function createUmkm(data: CreateUmkm): Promise<UMKMAdmin> {
 }
 
 async function updateUmkmById(payload: UpdateUMKM, id: string) {
+    console.log(payload, id)
     try {
-        const { data } = await api.post(`/umkm/${id}`, payload);
+        const { data } = await api.put(`/umkm/${id}`, payload);
 
         return data.data;
     } catch (error) {

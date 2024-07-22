@@ -58,7 +58,9 @@ export default function UpdateUmkmForm({
                 form.reset();
                 return "Sukses mengubah UMKM";
             },
-            error: "Gagal mengubah UMKM",
+            error: (err) => {
+                return err.message;
+            },
         });
     }
 
