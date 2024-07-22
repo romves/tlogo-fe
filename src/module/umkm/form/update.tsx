@@ -43,7 +43,7 @@ export default function UpdateUmkmForm({
             kelengkapan_surat: umkm.kelengkapan_surat ?? "",
             produk: umkm.produk ?? "",
             volume: umkm.volume ?? "",
-            // foto: "",
+            foto: [],
             // ...Array.from({ length: photoFieldCount }).reduce<{
             //     [key: string]: string;
             // }>((acc, _, index) => ({ ...acc, [`foto_${index}`]: "" }), {}),
@@ -51,7 +51,7 @@ export default function UpdateUmkmForm({
     });
 
     function onSubmit(data: CreateUmkm) {
-        toast.promise(updateUmkmById(data, params.id), {
+        toast.promise(updateUmkmById(form.getValues(), params.id), {
             loading: "Memproses perubahan UMKM...",
             success: (data) => {
                 form.reset();

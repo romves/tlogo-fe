@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 </BreadcrumbList>
             </Breadcrumb>
 
-            <div className="grid xl:grid-cols-2 gap-4">
+            <div className="grid gap-4">
                 <Link href={`/admin/umkm/${params.id}/edit`} className={cn(buttonVariants(), 'ml-auto w-fit')} >Ubah Data UMKM</Link>
 
                 <section className="grid md:grid-cols-2 gap-2 md:gap-4">

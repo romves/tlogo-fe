@@ -8,6 +8,9 @@ const nextConfig = {
             {
                 hostname: "drive.google.com",
             },
+            {
+                hostname: "tezldhnoobzflypxvpuo.supabase.co",
+            },
         ],
     },
 };
