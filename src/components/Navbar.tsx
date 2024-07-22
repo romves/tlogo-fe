@@ -5,6 +5,7 @@ import React from "react";
 import IconTlogo from "@/assets/icons/DESATLOGO.gif";
 import Link from "next/link";
 import NavBurger from "./NavBurger";
+import AvatarDropdown from "./AvatarDropdown";
 
 export default function Navbar() {
     return (
@@ -18,11 +19,14 @@ export default function Navbar() {
                 />
             </Link>
 
-            <div className="flex gap-3 font-medium text-sm">
-                <Link href="/umkm">Lapak UMKM</Link>
-                <Link href="/peta-wilayah">Peta & Wilayah Desa</Link>
+            <div className="flex items-center gap-3">
+                <div className="flex gap-3 font-medium text-sm items-center">
+                    <Link href="/umkm">Lapak UMKM</Link>
+                    <Link href="/peta-wilayah">Peta Desa</Link>
+                </div>
+                {/* <NavBurger isOpen={false} setIsOpen={() => {}} /> */}
+                <AvatarDropdown />
             </div>
-            {/* <NavBurger isOpen={false} setIsOpen={() => {}} /> */}
         </nav>
     );
 }
