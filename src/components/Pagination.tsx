@@ -10,7 +10,7 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default function Pagination({meta}: {meta: Meta}) {
+export default function Pagination({ meta }: { meta: Meta }) {
     return (
         <PaginationContainer>
             <PaginationContent>
@@ -18,14 +18,16 @@ export default function Pagination({meta}: {meta: Meta}) {
                     <PaginationItem>
                         <PaginationPrevious
                             href={`?page=${Number(meta.page) - 1}`}
+                            size="sm"
                         />
                     </PaginationItem>
                 )}
-                {pagination(Number(meta.page), Number(meta.totalPages)).map(
+                {getPaginationGenerator(Number(meta.page), Number(meta.totalPages)).map(
                     (page, i) => (
                         <PaginationItem key={i}>
                             {typeof page === "number" ? (
                                 <PaginationLink
+                                    size="sm"
                                     href={`?page=${page}`}
                                     isActive={meta.page == page}
                                 >
@@ -40,6 +42,7 @@ export default function Pagination({meta}: {meta: Meta}) {
                 {meta.page < meta.totalPages && (
                     <PaginationItem>
                         <PaginationNext
+                            size="sm"
                             href={`?page=${Number(meta.page) + 1}`}
                         />
                     </PaginationItem>
@@ -49,32 +52,49 @@ export default function Pagination({meta}: {meta: Meta}) {
     );
 }
 
-export function pagination(
-    current: number,
-    total: number
-): (number | string)[] {
-    if (total <= 1) return [1];
+export const getPaginationGenerator = (
+    currentPageNumber: number,
+    totalPageNumber: number,
+    offset = 2
+): number[] | string[] => {
+    // By doing this, when we are close to the beginning or end of the pagination, two numbers are generated after/before the current page,
+    // but when we are far from these points (in the middle of the pagination), we generate only one number after/before the current page.
+    const offsetNumber =
+        currentPageNumber <= offset ||
+        currentPageNumber > totalPageNumber - offset
+            ? offset
+            : offset - 1;
+    const numbersList = [];
+    const numbersListWithDots: (string | number)[] = [];
 
-    const center: number[] = [
-        current - 2,
-        current - 1,
-        current,
-        current + 1,
-        current + 2,
-    ];
-    const filteredCenter: number[] = center.filter((p) => p > 1 && p < total);
-    const includeThreeLeft: boolean = current === 5;
-    const includeThreeRight: boolean = current === total - 4;
-    const includeLeftDots: boolean = current > 5;
-    const includeRightDots: boolean = current < total - 4;
+    // If itemsPerPage is less than what the user selected with the Select component or if there is no page or only one page:
+    if (totalPageNumber <= 1 || totalPageNumber === undefined) return [1];
 
-    if (includeThreeLeft) filteredCenter.unshift(2);
-    if (includeThreeRight) filteredCenter.push(total - 1);
+    // Create list of numbers:
+    numbersList.push(1);
+    for (
+        let i = currentPageNumber - offsetNumber;
+        i <= currentPageNumber + offsetNumber;
+        i++
+    ) {
+        if (i < totalPageNumber && i > 1) {
+            numbersList.push(i);
+        }
+    }
+    numbersList.push(totalPageNumber);
 
-    const result: (number | string)[] = [1, ...filteredCenter, total];
+    // Add three dots to the list of numbers:
+    numbersList.reduce((accumulator, currentValue) => {
+        if (accumulator === 1) {
+            numbersListWithDots.push(accumulator);
+        }
+        if (currentValue - accumulator !== 1) {
+            numbersListWithDots.push("...");
+        }
+        numbersListWithDots.push(currentValue);
 
-    if (includeLeftDots) result.splice(1, 0, "...");
-    if (includeRightDots) result.splice(result.length - 1, 0, "...");
+        return currentValue;
+    });
 
-    return result;
-}
+    return numbersListWithDots as string[];
+};
