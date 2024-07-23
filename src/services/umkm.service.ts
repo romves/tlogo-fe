@@ -5,9 +5,7 @@ import { UMKMAdmin } from "@/module/umkm/types";
 async function getAllUmkm(query?: {
     perPage?: string;
     page?: string;
-}): Promise<UMKMAdmin[]> {
-    console.log(query)
-
+}): Promise<{ data: UMKMAdmin[]; meta: Meta }> {
     try {
         const searchParams = new URLSearchParams();
         if (query?.perPage) {
@@ -18,7 +16,10 @@ async function getAllUmkm(query?: {
         }
 
         const { data } = await api.get(`/umkm?${searchParams.toString()}`);
-        return data.data;
+
+        console.log(data);
+
+        return { data: data.data, meta: data.meta };
     } catch (error) {
         console.error("Error get all umkm:", error);
         throw new Error("Failed to fetch UMKM data. Please try again later.");
@@ -50,7 +51,6 @@ async function createUmkm(data: CreateUmkm): Promise<UMKMAdmin> {
 }
 
 async function updateUmkmById(payload: UpdateUMKM, id: string) {
-    console.log(payload, id);
     try {
         const { data } = await api.put(`/umkm/${id}`, payload);
 

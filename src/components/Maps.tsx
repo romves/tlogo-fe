@@ -45,7 +45,7 @@ const Maps = () => {
 
     useEffect(() => {
         getAllUmkm().then((data) => {
-            return setUmkms(data);
+            return setUmkms(data.data);
         });
     }, []);
 

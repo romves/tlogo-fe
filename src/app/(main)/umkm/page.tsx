@@ -1,13 +1,5 @@
+import Pagination from "@/components/Pagination";
 import UmkmCard from "@/components/UmkmCard";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination";
 import { getAllUmkm } from "@/services/umkm.service";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +12,7 @@ export default async function Page({
         page?: string;
     };
 }) {
-    const umkms = await getAllUmkm(searchParams);
+    const { data: umkms, meta } = await getAllUmkm(searchParams);
     return (
         <main className="container py-8">
             {umkms.length == 0 ? (
@@ -35,24 +27,10 @@ export default async function Page({
                         ))}
                     </section>
 
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious href="#" />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationNext href="#" />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
+                  <Pagination meta={meta} />
                 </div>
             )}
         </main>
     );
 }
+

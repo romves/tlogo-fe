@@ -272,7 +272,7 @@ export default function UpdateUmkmForm({
                         )}
                     />
 
-<FormField
+                    <FormField
                         control={form.control}
                         name="foto"
                         render={({ field: { value, onChange, ...field } }) => (
@@ -285,9 +285,6 @@ export default function UpdateUmkmForm({
                                         accept="image/*"
                                         multiple
                                         onChange={(e) => {
-                                            console.log(
-                                                Array.from(e.target.files || [])
-                                            );
                                             onChange(
                                                 Array.from(e.target.files || [])
                                             );
@@ -299,7 +296,6 @@ export default function UpdateUmkmForm({
                         )}
                     />
 
-                   
                     <Button type="submit">Simpan</Button>
                 </form>
             </Form>

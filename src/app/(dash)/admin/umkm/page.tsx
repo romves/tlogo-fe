@@ -1,13 +1,5 @@
+import Pagination from "@/components/Pagination";
 import { buttonVariants } from "@/components/ui/button";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
 import TableSection from "@/module/umkm/section/table";
 import { getAllUmkm } from "@/services/umkm.service";
@@ -23,7 +15,7 @@ export default async function Page({
         page?: string;
     };
 }) {
-    const umkm = await getAllUmkm(searchParams);
+    const {data: umkms, meta} = await getAllUmkm(searchParams);
 
     return (
         <main className="container my-8 grid gap-4">
@@ -35,25 +27,10 @@ export default async function Page({
             </Link>
 
             <div className="overflow-x-auto">
-                <TableSection umkm={umkm} />
+                <TableSection umkm={umkms} />
             </div>
 
-            <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext href="#" />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+            <Pagination meta={meta} />
         </main>
     );
 }

@@ -22,9 +22,6 @@ import Link from "next/link";
 
 export default function AvatarDropdown() {
     const { data, status } = useSession();
-
-    console.log(status);
-
     if (status == "authenticated") {
         return (
             <DropdownMenu>

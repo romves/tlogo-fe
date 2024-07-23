@@ -330,9 +330,6 @@ export default function CreateUmkmForm() {
                                         accept="image/*"
                                         multiple
                                         onChange={(e) => {
-                                            console.log(
-                                                Array.from(e.target.files || [])
-                                            );
                                             onChange(
                                                 Array.from(e.target.files || [])
                                             );
