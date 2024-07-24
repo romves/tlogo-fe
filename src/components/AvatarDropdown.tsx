@@ -44,7 +44,7 @@ export default function AvatarDropdown() {
                                 <span>Dashboard UMKM</span>
                             </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        {/* <DropdownMenuItem>
                             <Settings className="mr-2 h-4 w-4" />
                             <span>Settings</span>
                             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
@@ -53,7 +53,7 @@ export default function AvatarDropdown() {
                             <Keyboard className="mr-2 h-4 w-4" />
                             <span>Keyboard shortcuts</span>
                             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                        </DropdownMenuItem>
+                        </DropdownMenuItem> */}
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>

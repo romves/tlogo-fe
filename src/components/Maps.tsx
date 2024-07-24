@@ -9,12 +9,20 @@ import type { GeoJsonObject } from "geojson";
 import { getAllUmkm } from "@/services/umkm.service";
 import { useEffect, useState } from "react";
 import { UMKMAdmin } from "@/module/umkm/types";
+import Link from "next/link";
+import { set } from "zod";
 
 const ICON = icon({
     iconUrl: "/icons/store.png",
     iconSize: [28, 28],
     iconAnchor: [32 / 2, 32 / 2],
 });
+
+const MYLOC_ICON = icon({
+    iconUrl: "/icons/myloc.svg",
+    iconSize: [28, 28],
+    iconAnchor: [32 / 2, 32 / 2],
+})
 
 const colors = {
     1: "#FFB200",
@@ -42,13 +50,18 @@ function resetHighlight(e: L.LeafletMouseEvent) {
 
 const Maps = () => {
     const [umkms, setUmkms] = useState<UMKMAdmin[]>();
+    const [geolocation, setGeolocation] = useState<GeolocationPosition>();
 
     useEffect(() => {
         const query = {
             perPage: "1000",
-        }
+        };
         getAllUmkm(query).then((data) => {
             return setUmkms(data.data);
+        });
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            setGeolocation(position);
         });
     }, []);
 
@@ -113,11 +126,31 @@ const Maps = () => {
                             <Popup>
                                 <div>
                                     <h2>{umkm.nama}</h2>
+                                    <Link href={`/umkm/${umkm.id}`}>
+                                        Lihat Detail
+                                    </Link>
                                 </div>
                             </Popup>
                         </Marker>
                     );
                 })}
+                {geolocation && (
+                    <Marker
+                        position={[
+                            geolocation.coords.latitude,
+                            geolocation.coords.longitude,
+                        ]}
+                        icon={
+                            MYLOC_ICON
+                        }
+                    >
+                        <Popup>
+                            <div>
+                                <h2>Posisi Anda</h2>
+                            </div>
+                        </Popup>
+                    </Marker>
+                )}
             </MapContainer>
         </div>
     );
