@@ -52,9 +52,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                             ))
                         ) : (
                             <>
-                                <div className="bg-neutral-300 aspect-square h-44 lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
-                                <div className="bg-neutral-300 aspect-square h-44 lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
-                                <div className="bg-neutral-300 aspect-square h-44 lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-[4/3] lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-[4/3] lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-[4/3] lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
                             </>
                         )}
                     </div>
