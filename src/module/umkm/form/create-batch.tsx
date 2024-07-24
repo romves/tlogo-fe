@@ -44,7 +44,7 @@ export default function CreateBatchUmkmForm() {
                 form.reset();
                 router.push("/admin/umkm");
 
-                return "Berhasil menambah UMKM";
+                return data.message;
             },
             error: (err) => {
                 return err.message;
