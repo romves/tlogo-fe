@@ -38,6 +38,12 @@ export default async function Page({ params }: { params: { id: string } }) {
                 >
                     Ubah Data UMKM
                 </Link>
+                {/* <Button
+                    href={`/admin/umkm/${params.id}/edit`}
+                    className={cn(buttonVariants(), "ml-auto w-fit")}
+                >
+                   Hapus UMKM
+                </Button> */}
 
                 <section className="grid md:grid-cols-2 gap-2 md:gap-4">
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit overflow-x-hidden">
