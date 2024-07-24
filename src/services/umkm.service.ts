@@ -68,7 +68,7 @@ async function deleteUmkmById(id: string) {
 async function createUmkmBatchCSV(payload: any) {
     const { data } = await formDataApi.post("/umkm/batch", payload);
 
-    return data.data;
+    return data;
 }
 
 async function getUMKMMaps() {
