@@ -113,7 +113,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <iframe
                             className="w-full aspect-[21/9]"
                             // src={`https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3949.802864216327!2d${umkm.koordinat_umkm[1]}!3d${umkm.koordinat_umkm[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMDcnMTcuNiJTIDExMsKwMTInMDIuNSJF!5e0!3m2!1sen!2sid!4v1721375669775!5m2!1sen!2sid`}
-                            src={`http://maps.google.com/maps?q=${umkm.koordinat_umkm[0]},${umkm.koordinat_umkm[1]}&z=14&output=embed`}
+                            src={`https://maps.google.com/maps?q=${umkm.koordinat_umkm[0]},${umkm.koordinat_umkm[1]}&z=14&output=embed`}
                             loading="lazy"
                         ></iframe>
                     </div>
