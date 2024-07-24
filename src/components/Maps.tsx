@@ -5,12 +5,11 @@ import L, { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-import type { GeoJsonObject } from "geojson";
-import { getAllUmkm } from "@/services/umkm.service";
-import { useEffect, useState } from "react";
 import { UMKMAdmin } from "@/module/umkm/types";
+import { getAllUmkm, getUMKMMaps } from "@/services/umkm.service";
+import type { GeoJsonObject } from "geojson";
 import Link from "next/link";
-import { set } from "zod";
+import { useEffect, useState } from "react";
 
 const ICON = icon({
     iconUrl: "/icons/store.png",
@@ -22,7 +21,7 @@ const MYLOC_ICON = icon({
     iconUrl: "/icons/myloc.svg",
     iconSize: [28, 28],
     iconAnchor: [32 / 2, 32 / 2],
-})
+});
 
 const colors = {
     1: "#FFB200",
@@ -53,11 +52,8 @@ const Maps = () => {
     const [geolocation, setGeolocation] = useState<GeolocationPosition>();
 
     useEffect(() => {
-        const query = {
-            perPage: "1000",
-        };
-        getAllUmkm(query).then((data) => {
-            return setUmkms(data.data);
+        getUMKMMaps().then((data) => {
+            return setUmkms(data);
         });
 
         navigator.geolocation.getCurrentPosition((position) => {
@@ -140,9 +136,7 @@ const Maps = () => {
                             geolocation.coords.latitude,
                             geolocation.coords.longitude,
                         ]}
-                        icon={
-                            MYLOC_ICON
-                        }
+                        icon={MYLOC_ICON}
                     >
                         <Popup>
                             <div>

@@ -32,7 +32,7 @@ export default function AvatarDropdown() {
                         </AvatarFallback>
                     </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
+                <DropdownMenuContent className="w-56 z-[9999]">
                     <DropdownMenuLabel>
                         Halo {data.user.name} !!
                     </DropdownMenuLabel>

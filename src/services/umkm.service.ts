@@ -71,6 +71,12 @@ async function createUmkmBatchCSV(payload: any) {
     return data.data;
 }
 
+async function getUMKMMaps() {
+    const { data } = await api.get("/umkm/maps");
+    console.log(data)
+    return data.data;
+}
+
 export {
     createUmkm,
     createUmkmBatchCSV,
@@ -78,4 +84,5 @@ export {
     getAllUmkm,
     getUmkmById,
     updateUmkmById,
+    getUMKMMaps,
 };
