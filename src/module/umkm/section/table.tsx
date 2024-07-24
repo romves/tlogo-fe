@@ -12,7 +12,13 @@ import { Settings } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 
-export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
+export default function TableSection({
+    umkm: data,
+    meta,
+}: {
+    umkm: UMKMAdmin[];
+    meta: Meta;
+}) {
     if (!data || data.length === 0) {
         return (
             <div className="bg-white rounded-lg p-4 text-center text-neutral-400">
@@ -54,7 +60,9 @@ export default function TableSection({ umkm: data }: { umkm: UMKMAdmin[] }) {
                     {umkm.map((item, i) => (
                         <Fragment key={item.id}>
                             <TableRow className="text-nowrap">
-                                <TableCell>{i + 1}</TableCell>
+                                <TableCell>
+                                    {i + (meta.page - 1) * meta.perPage + 1}
+                                </TableCell>
                                 <TableCell>{item.nama}</TableCell>
                                 {/* <TableCell>{item.alamat}</TableCell> */}
                                 {/* <TableCell>{item.nama_pemilik}</TableCell> */}

@@ -27,7 +27,7 @@ export default async function Page({
             </Link>
 
             <div className="overflow-x-auto">
-                <TableSection umkm={umkms} />
+                <TableSection umkm={umkms} meta={meta} />
             </div>
 
             <Pagination meta={meta} />

@@ -17,8 +17,6 @@ async function getAllUmkm(query?: {
 
         const { data } = await api.get(`/umkm?${searchParams.toString()}`);
 
-        console.log(data);
-
         return { data: data.data, meta: data.meta };
     } catch (error) {
         console.error("Error get all umkm:", error);
@@ -73,7 +71,6 @@ async function createUmkmBatchCSV(payload: any) {
 
 async function getUMKMMaps() {
     const { data } = await api.get("/umkm/maps");
-    console.log(data)
     return data.data;
 }
 
