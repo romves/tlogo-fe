@@ -44,7 +44,10 @@ const Maps = () => {
     const [umkms, setUmkms] = useState<UMKMAdmin[]>();
 
     useEffect(() => {
-        getAllUmkm().then((data) => {
+        const query = {
+            perPage: "1000",
+        }
+        getAllUmkm(query).then((data) => {
             return setUmkms(data.data);
         });
     }, []);
