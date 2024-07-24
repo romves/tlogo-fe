@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                             umkm.foto.slice(1, 4).map((foto, index) => (
                                 <div
                                     key={index}
-                                    className="relative overflow-hidden h-full lg:h-[28%] w-full rounded-xl shadow"
+                                    className="relative overflow-hidden lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow aspect-[4/3] "
                                 >
                                     <Image
                                         src={foto.url_foto}
@@ -52,9 +52,9 @@ export default async function Page({ params }: { params: { id: string } }) {
                             ))
                         ) : (
                             <>
-                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow"></div>
-                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow"></div>
-                                <div className="bg-neutral-300 aspect-square h-full lg:h-[28%] w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-square h-44 lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-square h-44 lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
+                                <div className="bg-neutral-300 aspect-square h-44 lg:h-[28%] w-[35%] lg:w-full rounded-xl shadow"></div>
                             </>
                         )}
                     </div>
@@ -111,7 +111,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                             Informasi lebih lanjut hubungi penjual melalui{" "}
                             <a
                                 href={`https://wa.me/${umkm.nomor_hp}`}
-                                className="text-blue-500"
+                                className="text-blue-500 after:content-whatsapp-icon after:ml-[3px]"
                             >
                                 Whatsapp
                             </a>
@@ -125,7 +125,8 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <div className="">
                             <iframe
                                 className="w-full aspect-[21/9]"
-                                src={`https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3949.802864216327!2d${umkm.koordinat_umkm[1]}!3d${umkm.koordinat_umkm[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMDcnMTcuNiJTIDExMsKwMTInMDIuNSJF!5e0!3m2!1sen!2sid!4v1721375669775!5m2!1sen!2sid`}
+                                // src={`https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3949.802864216327!2d${umkm.koordinat_umkm[1]}!3d${umkm.koordinat_umkm[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMDcnMTcuNiJTIDExMsKwMTInMDIuNSJF!5e0!3m2!1sen!2sid!4v1721375669775!5m2!1sen!2sid`}
+                                src={`http://maps.google.com/maps?q=${umkm.koordinat_umkm[0]},${umkm.koordinat_umkm[1]}&z=14&output=embed`}
                                 loading="lazy"
                             ></iframe>
                         </div>

@@ -23,14 +23,21 @@ export default async function Page({ params }: { params: { id: string } }) {
         <main className="container py-4 space-y-4">
             <Breadcrumb>
                 <BreadcrumbList>
-                    <BreadcrumbLink href="/admin/umkm">Dashboard UMKM</BreadcrumbLink>
+                    <BreadcrumbLink href="/admin/umkm">
+                        Dashboard UMKM
+                    </BreadcrumbLink>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>{umkm.nama}</BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
 
             <div className="grid gap-4">
-                <Link href={`/admin/umkm/${params.id}/edit`} className={cn(buttonVariants(), 'ml-auto w-fit')} >Ubah Data UMKM</Link>
+                <Link
+                    href={`/admin/umkm/${params.id}/edit`}
+                    className={cn(buttonVariants(), "ml-auto w-fit")}
+                >
+                    Ubah Data UMKM
+                </Link>
 
                 <section className="grid md:grid-cols-2 gap-2 md:gap-4">
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit overflow-x-hidden">
@@ -95,6 +102,20 @@ export default async function Page({ params }: { params: { id: string } }) {
                                 {umkm.kelengkapan_surat}
                             </h2>
                         </span>
+                        <span>
+                            <p className="text-xs lg:text-sm text-neutral-700/70 font-medium">
+                                Koordinat UMKM
+                            </p>
+                            <h2 className="text-sm md:text-base font-semibold">
+                                {umkm.koordinat_umkm}
+                            </h2>
+                        </span>
+                        <iframe
+                            className="w-full aspect-[21/9]"
+                            // src={`https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3949.802864216327!2d${umkm.koordinat_umkm[1]}!3d${umkm.koordinat_umkm[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMDcnMTcuNiJTIDExMsKwMTInMDIuNSJF!5e0!3m2!1sen!2sid!4v1721375669775!5m2!1sen!2sid`}
+                            src={`http://maps.google.com/maps?q=${umkm.koordinat_umkm[0]},${umkm.koordinat_umkm[1]}&z=14&output=embed`}
+                            loading="lazy"
+                        ></iframe>
                     </div>
 
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit">
