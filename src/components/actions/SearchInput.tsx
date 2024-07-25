@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function SearchInput() {
+export default function SearchInput({ className }: { className?: string }) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -23,7 +23,7 @@ export default function SearchInput() {
     }, 300);
 
     return (
-        <div className="p-2 flex gap-1 max-w-[350px]">
+        <div className={`${className} flex gap-1 max-w-[350px]`}>
             <Input
                 type="search"
                 placeholder="Cari..."
@@ -36,7 +36,7 @@ export default function SearchInput() {
                     }
                 }}
             />
-            <Button variant='primary'>
+            <Button variant="primary">
                 <Search size={16} color="#ffffff" strokeWidth={3} />
             </Button>
         </div>

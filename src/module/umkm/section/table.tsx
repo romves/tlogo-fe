@@ -32,7 +32,7 @@ export default function TableSection({
 
     return (
         <div className="bg-white rounded-lg">
-            <SearchInput />
+            <SearchInput className="p-2"/>
             <Table>
                 <TableHeader>
                     <TableRow>
