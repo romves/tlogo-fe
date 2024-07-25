@@ -23,7 +23,7 @@ export default function SearchInput({ className }: { className?: string }) {
     }, 300);
 
     return (
-        <div className={`${className} flex gap-1 max-w-[350px]`}>
+        <div className={`${className} flex gap-1 max-w-[350px] pb-2`}>
             <Input
                 type="search"
                 placeholder="Cari..."
