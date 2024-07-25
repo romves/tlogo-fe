@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { UMKMAdmin } from "../types";
 import { uploadImagesLogic } from "@/services/file-upload.service";
+import { X } from "lucide-react";
 
 export default function UpdateUmkmForm({
     params,
@@ -295,6 +296,29 @@ export default function UpdateUmkmForm({
                             </FormItem>
                         )}
                     />
+
+                    <div className="flex overflow-x-auto gap-1">
+                        {umkm.foto?.map((foto, index) => (
+                            <div className="relative">
+                                <img
+                                    key={index}
+                                    src={foto.url_foto}
+                                    alt={`Foto UMKM ${umkm.nama}`}
+                                    className="w-6/4"
+                                />
+                                <button
+                                    className="absolute bg-neutral-800/70 top-1 right-1 rounded-full p-[2px]"
+                                    type="button"
+                                >
+                                    <X
+                                        size={16}
+                                        color="#ffffff"
+                                        strokeWidth={3}
+                                    />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
 
                     <Button type="submit">Simpan</Button>
                 </form>

@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 
 import {
@@ -9,41 +11,53 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function Pagination({ meta }: { meta: Meta }) {
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const currentPage = searchParams.get("page") || 1;
+
+    const createPageURL = (page: number) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("page", page.toString());
+        return `${pathname}?${params.toString()}`;
+    };
+
     return (
         <PaginationContainer>
             <PaginationContent>
                 {meta.page > 1 && (
                     <PaginationItem>
                         <PaginationPrevious
-                            href={`?page=${Number(meta.page) - 1}`}
                             size="sm"
+                            href={createPageURL(Number(meta.page) - 1)}
                         />
                     </PaginationItem>
                 )}
-                {getPaginationGenerator(Number(meta.page), Number(meta.totalPages)).map(
-                    (page, i) => (
-                        <PaginationItem key={i}>
-                            {typeof page === "number" ? (
-                                <PaginationLink
-                                    size="sm"
-                                    href={`?page=${page}`}
-                                    isActive={meta.page == page}
-                                >
-                                    {page}
-                                </PaginationLink>
-                            ) : (
-                                <PaginationEllipsis />
-                            )}
-                        </PaginationItem>
-                    )
-                )}
+                {getPaginationGenerator(
+                    Number(meta.page),
+                    Number(meta.totalPages)
+                ).map((page, i) => (
+                    <PaginationItem key={i}>
+                        {typeof page === "number" ? (
+                            <PaginationLink
+                                size="sm"
+                                href={createPageURL(page)}
+                                isActive={meta.page == page}
+                            >
+                                {page}
+                            </PaginationLink>
+                        ) : (
+                            <PaginationEllipsis />
+                        )}
+                    </PaginationItem>
+                ))}
                 {meta.page < meta.totalPages && (
                     <PaginationItem>
                         <PaginationNext
                             size="sm"
-                            href={`?page=${Number(meta.page) + 1}`}
+                            href={createPageURL(Number(meta.page) + 1)}
                         />
                     </PaginationItem>
                 )}

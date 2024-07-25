@@ -1,5 +1,6 @@
 import Pagination from "@/components/Pagination";
 import UmkmCard from "@/components/UmkmCard";
+import SearchInput from "@/components/actions/SearchInput";
 import { getAllUmkm } from "@/services/umkm.service";
 
 export const dynamic = "force-dynamic";
@@ -10,11 +11,13 @@ export default async function Page({
     searchParams?: {
         perPage?: string;
         page?: string;
+        search?: string;
     };
 }) {
     const { data: umkms, meta } = await getAllUmkm(searchParams);
     return (
         <main className="container py-8">
+            <SearchInput />
             {umkms.length == 0 ? (
                 <div className="text-center text-neutral-400 font-medium">
                     No UMKM data available.

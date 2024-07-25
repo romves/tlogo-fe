@@ -34,12 +34,15 @@ export default async function Page({ params }: { params: { id: string } }) {
             </Breadcrumb>
 
             <div className="grid gap-4">
-                <Link
-                    href={`/admin/umkm/${params.id}/edit`}
-                    className={cn(buttonVariants(), "ml-auto w-fit")}
-                >
-                    Ubah Data UMKM
-                </Link>
+                <div className="flex items-center">
+                    <h1 className="font-bold text-xl md:text-2xl">Detail UMKM</h1>
+                    <Link
+                        href={`/admin/umkm/${params.id}/edit`}
+                        className={cn(buttonVariants(), "ml-auto w-fit")}
+                    >
+                        Ubah Data UMKM
+                    </Link>
+                </div>
                 {/* <Button
                     href={`/admin/umkm/${params.id}/edit`}
                     className={cn(buttonVariants(), "ml-auto w-fit")}
@@ -49,15 +52,15 @@ export default async function Page({ params }: { params: { id: string } }) {
 
                 <section className="grid md:grid-cols-2 gap-2 md:gap-4">
                     <div className="p-4 border rounded-xl flex flex-col gap-2 h-fit overflow-x-hidden">
-                        <h2 className="font-bold text-xl">Informasi UMKM</h2>
-                        <hr />
+                        {/* <h2 className="font-bold text-xl">Informasi UMKM</h2>
+                        <hr /> */}
 
                         <div className="flex mb-4 gap-2 overflow-x-auto">
                             {umkm.foto.map((foto, i) => {
                                 return (
                                     <div
                                         key={i}
-                                        className="relative h-40 aspect-square"
+                                        className="relative h-40 aspect-[6/4]"
                                     >
                                         <Image
                                             src={foto.url_foto}

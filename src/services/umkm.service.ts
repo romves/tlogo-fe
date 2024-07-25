@@ -5,17 +5,11 @@ import { UMKMAdmin } from "@/module/umkm/types";
 async function getAllUmkm(query?: {
     perPage?: string;
     page?: string;
+    search?: string;
 }): Promise<{ data: UMKMAdmin[]; meta: Meta }> {
     try {
-        const searchParams = new URLSearchParams();
-        if (query?.perPage) {
-            searchParams.append("perPage", query.perPage);
-        }
-        if (query?.page) {
-            searchParams.append("page", query.page);
-        }
 
-        const { data } = await api.get(`/umkm?${searchParams.toString()}`);
+        const { data } = await api.get(`/umkm?${new URLSearchParams(query).toString()}`);
 
         return { data: data.data, meta: data.meta };
     } catch (error) {

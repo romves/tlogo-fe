@@ -1,4 +1,5 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import SearchInput from "@/components/actions/SearchInput";
+import { buttonVariants } from "@/components/ui/button";
 import {
     Table,
     TableBody,
@@ -8,7 +9,6 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { UMKMAdmin } from "@/module/umkm/types";
-import { Settings } from "lucide-react";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -27,10 +27,12 @@ export default function TableSection({
         );
     }
 
+    
     const umkm = data.map(({ foto, ...rest }) => rest);
 
     return (
         <div className="bg-white rounded-lg">
+            <SearchInput />
             <Table>
                 <TableHeader>
                     <TableRow>
