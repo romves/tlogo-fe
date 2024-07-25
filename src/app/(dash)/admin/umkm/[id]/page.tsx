@@ -1,3 +1,4 @@
+import DeleteUMKM from "@/components/actions/DeleteUMKM";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -7,10 +8,11 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getUmkmById } from "@/services/umkm.service";
+import { deleteUmkmById, getUmkmById } from "@/services/umkm.service";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 export default async function Page({ params }: { params: { id: string } }) {
     const umkm = await getUmkmById(params.id);
@@ -154,6 +156,8 @@ export default async function Page({ params }: { params: { id: string } }) {
                             </h2>
                         </span>
                     </div>
+
+                    <DeleteUMKM id={params.id} />
                 </section>
             </div>
         </main>
