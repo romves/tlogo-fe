@@ -11,6 +11,9 @@ const nextConfig = {
             {
                 hostname: "tezldhnoobzflypxvpuo.supabase.co",
             },
+            {
+                hostname: "loudquwijqzobqlwmkri.supabase.co",
+            },
         ],
     },
 };
