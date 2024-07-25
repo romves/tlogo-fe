@@ -299,7 +299,7 @@ export default function UpdateUmkmForm({
 
                     <div className="flex overflow-x-auto gap-1">
                         {umkm.foto?.map((foto, index) => (
-                            <div className="relative">
+                            <div key={index} className="relative">
                                 <img
                                     key={index}
                                     src={foto.url_foto}
