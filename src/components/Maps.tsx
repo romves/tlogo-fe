@@ -132,6 +132,7 @@ const Maps = () => {
                         layer.bindTooltip(feature.properties.nama, {
                             permanent: false,
                             direction: "center",
+                            interactive: false,
                         });
 
                         layer.on({

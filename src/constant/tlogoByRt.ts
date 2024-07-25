@@ -310,7 +310,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT I/I" },
+            properties: { id: 1, nama: "RT I/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -339,7 +339,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT I/II" },
+            properties: { id: 2, nama: "RT I/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -364,7 +364,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT I/II" },
+            properties: { id: 2, nama: "RT I/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -396,7 +396,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT I/III" },
+            properties: { id: 3, nama: "RT I/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -415,7 +415,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT I/I" },
+            properties: { id: 1, nama: "RT I/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -435,7 +435,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT I/IV" },
+            properties: { id: 4, nama: "RT I/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -458,7 +458,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT I/II" },
+            properties: { id: 2, nama: "RT I/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -481,7 +481,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT I/I" },
+            properties: { id: 1, nama: "RT I/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -502,7 +502,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT I/III" },
+            properties: { id: 3, nama: "RT I/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -526,7 +526,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT I/IV" },
+            properties: { id: 4, nama: "RT I/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -551,7 +551,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT II/II" },
+            properties: { id: 2, nama: "RT II/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -577,7 +577,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT II/I" },
+            properties: { id: 1, nama: "RT II/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -621,7 +621,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT II/II" },
+            properties: { id: 2, nama: "RT II/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -647,7 +647,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT II/III" },
+            properties: { id: 3, nama: "RT II/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -666,7 +666,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT II/I" },
+            properties: { id: 1, nama: "RT II/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -687,7 +687,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT II/IV" },
+            properties: { id: 4, nama: "RT II/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -710,7 +710,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT II/II" },
+            properties: { id: 2, nama: "RT II/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -739,7 +739,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT II/I" },
+            properties: { id: 1, nama: "RT II/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -758,7 +758,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT II/III" },
+            properties: { id: 3, nama: "RT II/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -779,7 +779,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT II/IV" },
+            properties: { id: 4, nama: "RT II/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -797,7 +797,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT III/II" },
+            properties: { id: 2, nama: "RT III/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -817,7 +817,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT III/II" },
+            properties: { id: 2, nama: "RT III/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -850,7 +850,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT III/I" },
+            properties: { id: 1, nama: "RT III/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -868,7 +868,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT III/III" },
+            properties: { id: 3, nama: "RT III/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -890,7 +890,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT III/IV" },
+            properties: { id: 4, nama: "RT III/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -913,7 +913,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT III/II" },
+            properties: { id: 2, nama: "RT III/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -942,7 +942,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT III/I" },
+            properties: { id: 1, nama: "RT III/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -965,7 +965,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT III/III" },
+            properties: { id: 3, nama: "RT III/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -997,7 +997,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT III/IV" },
+            properties: { id: 4, nama: "RT III/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1017,7 +1017,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT IV/II" },
+            properties: { id: 2, nama: "RT IV/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1043,7 +1043,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT IV/I" },
+            properties: { id: 1, nama: "RT IV/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1065,7 +1065,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT IV/II" },
+            properties: { id: 2, nama: "RT IV/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1088,7 +1088,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT IV/I" },
+            properties: { id: 1, nama: "RT IV/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1106,7 +1106,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT IV/III" },
+            properties: { id: 3, nama: "RT IV/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1139,7 +1139,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT IV/IV" },
+            properties: { id: 4, nama: "RT IV/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1168,7 +1168,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 2, nama: "RT IV/II" },
+            properties: { id: 2, nama: "RT IV/RW II" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1190,7 +1190,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT IV/I" },
+            properties: { id: 1, nama: "RT IV/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1210,7 +1210,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 3, nama: "RT IV/III" },
+            properties: { id: 3, nama: "RT IV/RW III" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1239,7 +1239,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 1, nama: "RT V/I" },
+            properties: { id: 1, nama: "RT V/RW I" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
@@ -1263,7 +1263,7 @@ export const tlogoByRt = {
         },
         {
             type: "Feature",
-            properties: { id: 4, nama: "RT V/IV" },
+            properties: { id: 4, nama: "RT V/RW IV" },
             geometry: {
                 type: "MultiPolygon",
                 coordinates: [
