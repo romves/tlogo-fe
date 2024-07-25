@@ -27,22 +27,11 @@ export default function CreateBatchUmkmForm() {
     });
 
     async function onSubmit() {
-        // await createUmkmBatchCSV(form.getValues())
-        //     .then(() => {
-        //         toast.success("Berhasil menambahkan UMKM");
-        //         form.reset();
-        //         // refresh
-
-        //         router.push("/admin/umkm");
-        //     })
-        //     .catch((err) => {
-        //         toast.error(err.message);
-        //     });
         toast.promise(createUmkmBatchCSV(form.getValues()), {
             loading: "Loading...",
             success: (data) => {
                 form.reset();
-                router.push("/admin/umkm");
+                // router.push("/admin/umkm");
 
                 return data.message;
             },
