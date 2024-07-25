@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 
 // export const BASE_URL = 'http://localhost:3001';
 // export const BASE_URL = 'https://tlogo-be-nest.vercel.app';
@@ -34,5 +34,25 @@ api.interceptors.request.use(async (config) => {
 
     return config;
 });
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            signOut();
+        }
+        return Promise.reject(error);
+    }
+);
+
+formDataApi.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            signOut();
+        }
+        return Promise.reject(error);
+    }
+);
 
 export { api, formDataApi };
