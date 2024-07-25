@@ -1,15 +1,19 @@
 "use client";
 
-import { tlogoByDusun } from "@/constant/tlogoByDusun";
 import L, { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
+import { tlogoByRt } from "@/constant/tlogoByRt";
 import { UMKMAdmin } from "@/module/umkm/types";
-import { getAllUmkm, getUMKMMaps } from "@/services/umkm.service";
+import { getUMKMMaps } from "@/services/umkm.service";
 import type { GeoJsonObject } from "geojson";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { tlogoByRw } from "@/constant/tlogoByRw";
+import { tlogoByDusun } from "@/constant/tlogoByDusun";
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const ICON = icon({
     iconUrl: "/icons/store.png",
@@ -24,9 +28,15 @@ const MYLOC_ICON = icon({
 });
 
 const colors = {
-    1: "#FFB200",
-    2: "#EB5B00",
-    3: "#E4003A",
+    1: "#FFB200", // Amber
+    2: "#EB5B00", // Burnt Orange
+    3: "#E4003A", // Red
+    4: "#8F00FF", // Violet
+    5: "#0077BE", // Ocean Blue
+    6: "#00A86B", // Jade Green
+    7: "#FC6C85", // Wild Watermelon
+    8: "#4B0082", // Indigo
+    9: "#FFD700", // Gold
 };
 
 function highlightFeature(e: L.LeafletMouseEvent) {
@@ -48,6 +58,7 @@ function resetHighlight(e: L.LeafletMouseEvent) {
 }
 
 const Maps = () => {
+    const searchParams = new URLSearchParams(window.location.search);
     const [umkms, setUmkms] = useState<UMKMAdmin[]>();
     const [geolocation, setGeolocation] = useState<GeolocationPosition>();
 
@@ -64,7 +75,27 @@ const Maps = () => {
     const position = [-8.12796, 112.2002401] as L.LatLngExpression;
 
     return (
-        <div className="p-8 mx-auto">
+        <div className="p-8 mx-auto space-y-4">
+            <div className="flex justify-center space-x-3">
+                {Object.keys(mapList).map((key) => {
+                    return (
+                        <Button
+                            disabled={key == searchParams.get("map")}
+                            variant="primary"
+                            key={key}
+                            className={`p-2 border border-gray-200 rounded-md`}
+                            onClick={() => {
+                                // router.push(`/peta-wilayah?map=${key}`);
+                                window.location.assign(
+                                    `/peta-wilayah?map=${key}`
+                                );
+                            }}
+                        >
+                            {key}
+                        </Button>
+                    );
+                })}
+            </div>
             <MapContainer
                 center={position}
                 zoom={15}
@@ -78,8 +109,14 @@ const Maps = () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+                {}
                 <GeoJSON
-                    data={tlogoByDusun as GeoJsonObject}
+                    data={
+                        mapList[
+                            (searchParams.get("map") as keyof typeof mapList) ??
+                                "Peta Dusun"
+                        ].data as GeoJsonObject
+                    }
                     style={(props) => {
                         return {
                             color: colors[
@@ -88,48 +125,48 @@ const Maps = () => {
                             fillOpacity: 0.3,
                             weight: 1,
                             className:
-                                "transition-all duration-300 ease-in-out",
+                                `transition-all duration-300 ease-in-out`,
                         };
                     }}
                     onEachFeature={(feature, layer) => {
-                        layer.bindTooltip(feature.properties.Dusun, {
-                            permanent: true,
+                        layer.bindTooltip(feature.properties.nama, {
+                            permanent: false,
                             direction: "center",
                         });
 
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: resetHighlight,
-                            // click: (e) => {
-                            //     console.log(e.target.feature.properties);
-
-                            //     e.target.bindPopup(
-                            //         e.target.feature.properties.Dusun
-                            //     );
-                            // },
+                            mousedown: (e) => {
+                                const feature = e.target.feature.properties;
+                                window.location.assign(
+                                    `/peta-wilayah?map=${feature.nama}`
+                                );
+                            }
                         });
                     }}
                 />
-                {umkms?.map((umkm) => {
-                    return (
-                        <Marker
-                            key={umkm.id}
-                            icon={ICON}
-                            position={
-                                umkm.koordinat_umkm as unknown as L.LatLngExpression
-                            }
-                        >
-                            <Popup>
-                                <div>
-                                    <h2>{umkm.nama}</h2>
-                                    <Link href={`/umkm/${umkm.id}`}>
-                                        Lihat Detail
-                                    </Link>
-                                </div>
-                            </Popup>
-                        </Marker>
-                    );
-                })}
+                {searchParams.get("map") == "Peta UMKM" &&
+                    umkms?.map((umkm) => {
+                        return (
+                            <Marker
+                                key={umkm.id}
+                                icon={ICON}
+                                position={
+                                    umkm.koordinat_umkm as unknown as L.LatLngExpression
+                                }
+                            >
+                                <Popup>
+                                    <div>
+                                        <h2>{umkm.nama}</h2>
+                                        <Link href={`/umkm/${umkm.id}`}>
+                                            Lihat Detail
+                                        </Link>
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        );
+                    })}
                 {geolocation && (
                     <Marker
                         position={[
@@ -151,3 +188,18 @@ const Maps = () => {
 };
 
 export default Maps;
+
+const mapList = {
+    "Peta Dusun": {
+        data: tlogoByDusun,
+    },
+    "Peta RW": {
+        data: tlogoByRw,
+    },
+    "Peta RT": {
+        data: tlogoByRt,
+    },
+    "Peta UMKM": {
+        data: tlogoByDusun,
+    },
+};
