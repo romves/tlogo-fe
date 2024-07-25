@@ -30,7 +30,7 @@ export default function CreateBatchUmkmForm() {
         toast.promise(createUmkmBatchCSV(form.getValues()), {
             loading: "Loading...",
             success: (data) => {
-                form.reset();
+                // form.reset();
                 // router.push("/admin/umkm");
 
                 return data.message;
