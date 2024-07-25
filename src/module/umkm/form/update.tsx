@@ -11,7 +11,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { CreateUmkm, createUmkmSchema } from "@/module/umkm/form/schema";
+import {
+    CreateUmkm,
+    FotoSchema,
+    createUmkmSchema,
+} from "@/module/umkm/form/schema";
 import { updateUmkmById } from "@/services/umkm.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -279,7 +283,7 @@ export default function UpdateUmkmForm({
                         name="foto"
                         render={({ field: { value, onChange, ...field } }) => (
                             <FormItem>
-                                <FormLabel>Foto</FormLabel>
+                                <FormLabel>Foto </FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
@@ -287,9 +291,21 @@ export default function UpdateUmkmForm({
                                         accept="image/*"
                                         multiple
                                         onChange={(e) => {
-                                            onChange(
-                                                Array.from(e.target.files || [])
-                                            );
+                                            if (
+                                                (e?.target?.files?.length ??
+                                                    0) > 4
+                                            ) {
+                                                form.setError("foto", {
+                                                    type: "manual",
+                                                    message: "Maksimal 4 foto",
+                                                });
+                                            } else {
+                                                onChange(
+                                                    Array.from(
+                                                        e.target.files || []
+                                                    )
+                                                );
+                                            }
                                         }}
                                     />
                                 </FormControl>

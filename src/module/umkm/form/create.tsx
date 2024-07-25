@@ -322,7 +322,7 @@ export default function CreateUmkmForm() {
                         name="foto"
                         render={({ field: { value, onChange, ...field } }) => (
                             <FormItem>
-                                <FormLabel>Foto</FormLabel>
+                                <FormLabel>Foto <span className="text-xs text-destructive">*Maksimal 4</span></FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
@@ -330,9 +330,23 @@ export default function CreateUmkmForm() {
                                         accept="image/*"
                                         multiple
                                         onChange={(e) => {
-                                            onChange(
-                                                Array.from(e.target.files || [])
-                                            );
+                                            if (
+                                                (e?.target?.files?.length ??
+                                                    0) > 4
+                                            ) {
+                                                form.setError("foto", {
+                                                    type: "manual",
+                                                    message: "Maksimal 4 foto",
+                                                });
+
+                                                form.reset();
+                                            } else {
+                                                onChange(
+                                                    Array.from(
+                                                        e.target.files || []
+                                                    )
+                                                );
+                                            }
                                         }}
                                     />
                                 </FormControl>
