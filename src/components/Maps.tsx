@@ -137,12 +137,6 @@ const Maps = () => {
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: resetHighlight,
-                            mousedown: (e) => {
-                                const feature = e.target.feature.properties;
-                                window.location.assign(
-                                    `/peta-wilayah?map=${feature.nama}`
-                                );
-                            }
                         });
                     }}
                 />
